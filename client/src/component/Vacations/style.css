@@ -1,0 +1,22 @@
+ 
+ .divStyle{
+    display:flex;
+    padding:10px;
+      flex-wrap: wrap;
+  justify-content: space-between;
+  }
+
+.cardStyle { 
+    width: 18rem;
+    margin: 40px;
+    left: 33%; 
+    border: solid black 1px;
+  
+  }
+
+
+  
+  .imageStyle{
+    height: 215px;
+  
+  } 
