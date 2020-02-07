@@ -15,4 +15,4 @@ function getJwt(user) {
 
     })
 }
-module.exports = {getJwt}
+module.exports = { getJwt }

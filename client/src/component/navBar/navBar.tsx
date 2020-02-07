@@ -11,13 +11,14 @@ class Navbar extends React.Component<any, any>{
     }
 
     render() {
-
         const token = localStorage.getItem("token")
+        const { role } = this.props
         let Authroutes = token ?
             <>
-                <button onClick={() => this.props.actions.logout()} className="btn" style={{ backgroundColor: "#3f51b5" }} > <Link style={{ color: "black" }} to="/">Sign out</Link></button>
+                <button onClick={() => this.props.actions.logout()} className="btn" style={{ backgroundColor: "#3f51b5" }} > <Link style={{ color: "black" }} to="/signin">Sign out</Link></button>
             </> :
-            <button className="btn" style={{ backgroundColor: "#3f51b5" }}> <Link style={{ color: "black" }} to="/signin">Sign in</Link></button>
+            <Link style={{ color: "black" }} to="/signin">
+                <button className="btn" style={{ backgroundColor: "#3f51b5" }}> Sign in</button></Link>
         return (
             <div style={{ backgroundColor: "#3f51b5" }}>
                 <nav className="navbar navbar-expand-lg navbar-primary">
@@ -27,7 +28,7 @@ class Navbar extends React.Component<any, any>{
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
-                            <AppLinks routes={routes} />
+                            <AppLinks routes={routes} role={role} />
                         </ul>
                         {Authroutes}
                     </div>
@@ -39,9 +40,10 @@ class Navbar extends React.Component<any, any>{
 }
 
 const mapStateToProps = (state: any) => {
-    const { login } = state
+    const { role } = state.login
+
     return {
-        login
+        role
     }
 }
 

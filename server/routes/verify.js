@@ -4,14 +4,17 @@ const jwt = require("jsonwebtoken")
 router.get("/", (req, res) => {
     const { token } = req.headers
     const { SECRET } = process.env
+
+    if (!token) return res.json({ status: false, role: "" })
+
     jwt.verify(token, SECRET, (err, decoded) => {
-        // const { role } = decoded
         if (err) {
-            res.json({ status: false })
+            res.json({ status: false, role: "" })
         } else {
-            res.json({ status: true })
+            const { role } = decoded
+            res.json({ status: true, role })
         }
     })
 })
 
-module.exports= router
+module.exports = router

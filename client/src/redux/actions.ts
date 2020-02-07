@@ -1,5 +1,5 @@
 import Actions from "./actions.config"
-import { registerService, loginService, verifyTokenService, getVacationsService, followService } from "./services"
+import { registerService, loginService, verifyTokenService, getVacationsService, followService, addVacationService, removeVacationService, editVacationService,getVacationsFollowService } from "./services"
 
 export const registerUserSuccess = (user: any) => {
     return {
@@ -43,17 +43,11 @@ export const resetRedirect = () => {
         type: Actions.RESET_REDIRECT
     }
 }
-export const getToken = () => {
-    const token = localStorage.getItem("token")
-    return {
-        type: Actions.GET_TOKEN,
-        payload: token
-    }
-}
-export const verifyTokenSuccess = (status: any) => {
+
+export const verifyTokenSuccess = (data: any) => {
     return {
         type: Actions.VALIDATED_STATUS,
-        payload: status
+        payload: data
     }
 }
 
@@ -80,10 +74,46 @@ export const getAllVacations = () => {
     }
 
 }
-export const followVacation = () => {
-    return async (dispatch: any) => {
-        const data = await followService()
-        // dispatch()
+export const followVacation = (isFollowed: any, vacation_id: any) => {
+    return async (dispatch: Function) => {
+        const data = await followService(isFollowed, vacation_id)
+        dispatch(vacationsSuccess(data))
     }
 
+}
+export const addVacation = (vacationObj: any) => {
+    return async () => {
+        await addVacationService(vacationObj)
+    }
+
+}
+export const removeVacation = (vacationId: any) => {
+
+    return async (dispatch: any) => {
+        const data = await removeVacationService(vacationId)
+        dispatch(vacationsSuccess(data))
+    }
+
+}
+export const editVacation = (vacationObj: any) => {
+    return async (dispatch: Function) => {
+        const data = await editVacationService(vacationObj)
+        dispatch(vacationsSuccess(data))
+
+    }
+}
+
+
+export const getVacationsFollows = () => {
+    return async (dispatch: Function) => {
+        const data = await getVacationsFollowService()
+        dispatch(getFollowersSuccsess(data))
+
+    }
+}
+export const getFollowersSuccsess = (follows: any) => {
+    return {
+        type: Actions.FOLLOWERS,
+        payload: follows
+    }
 }

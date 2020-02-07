@@ -4,7 +4,7 @@ import { Switch, BrowserRouter, Redirect, Route } from 'react-router-dom'
 import Navbar from "./component/navBar/navBar"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { connect } from "react-redux"
-import { getToken, verifyToken } from "./redux/actions"
+import { verifyToken } from "./redux/actions"
 import { AppRoutes } from './component/appRouter/appRouter';
 import { routes } from './component/appRouter/routers.config';
 import SignIn from "./component/SignIn/SignIn"
@@ -13,7 +13,6 @@ import SignIn from "./component/SignIn/SignIn"
 class App extends React.Component<any, any>{
 
   componentDidMount() {
-    // this.props.actions.setToken()
     this.props.actions.verifyToken()
 
   }
@@ -38,9 +37,6 @@ class App extends React.Component<any, any>{
 const mapDispatchToProps = (dispatch: any) => {
   return {
     actions: {
-      setToken: () => {
-        dispatch(getToken())
-      },
       verifyToken: () => {
         dispatch(verifyToken())
       }

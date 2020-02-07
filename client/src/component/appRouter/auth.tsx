@@ -50,14 +50,14 @@ import mainAxios from "../axios/axios";
 // }
 
 
-export const verficationWrapper = (WrappedComponent: any) => {
-
+export const verficationWrapper = (WrappedComponent: any, adminRequierd: boolean) => {
     class VerificationHOCValidator extends React.Component<any, any> {
         constructor(props: any) {
             super(props);
             this.state = {
                 verified: false,
-                isLoading: false
+                isLoading: false,
+                role: ""
             }
         }
 
@@ -67,25 +67,38 @@ export const verficationWrapper = (WrappedComponent: any) => {
         }
 
         componentWillMount() {
-            const { validatedStatus } = this.props
+            // const { validatedStatus } = this.props
             this.setState({ isLoading: true })
             this.verifyUser()
                 .then((result: any) => {
-                    const { status } = result.data;
+                    const { status, role } = result.data;
                     this.setState((previousState: any, currentProps: any) => {
-                        return { ...previousState, verified: status, isLoading: false };
+                        return { ...previousState, verified: status, isLoading: false, role };
                     });
                 })
         }
 
         render() {
             if (this.state.isLoading) return <div className="loader">Loading...</div>
-            if (!this.state.verified) return <Redirect to="/signIn" />
-            return <WrappedComponent {...this.props} />
+
+            if (!this.state.verified) {
+                localStorage.setItem("token", "")
+                return <Redirect to="/signIn" />
+
+            } else {
+                const { role } = this.state
+                const { adminRequierd } = this.props
+                if (adminRequierd && role === "admin" || !adminRequierd) {
+                    return <WrappedComponent {...this.props} role={role} />
+                } else {
+                    return <Redirect to="/" />
+                }
+
+            }
         }
     }
 
-    return connect(null, null)(VerificationHOCValidator);
+    return VerificationHOCValidator;
 }
 
 

@@ -34,7 +34,6 @@ class SignIn extends React.Component<any, any>{
     }
 
     render() {
-
         const token = localStorage.getItem("token")
         try {
             if (token)

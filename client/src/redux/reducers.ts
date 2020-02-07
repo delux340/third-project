@@ -2,9 +2,9 @@ import Actions from "./actions.config"
 
 const initialState = {
     register: { registerRedirect: false, message: "" },
-    login: { jwtWithoutPassword: "", message: "" },
+    login: { jwtWithoutPassword: "", message: "", role: "" },
     vacations: [],
-    validatedStatus: false
+    followers: []
 }
 
 
@@ -18,10 +18,18 @@ export default function root(state = initialState, action: any) {
                 register: action.payload
             }
         }
-        case Actions.VALIDATED_STATUS: {
+        case Actions.FOLLOWERS: {
+
             return {
                 ...state,
-                validatedStatus: action.payload
+                followers: action.payload
+            }
+        }
+        case Actions.VALIDATED_STATUS: {
+            const { login } = initialState
+            return {
+                ...state,
+                login: { ...login, role: action.payload.role }
             }
         }
 
@@ -39,18 +47,11 @@ export default function root(state = initialState, action: any) {
                 register: { registerRedirect: false, message: "" }
             }
         }
-        case Actions.GET_TOKEN: {
-            return {
-                ...state,
-                login: { jwtWithoutPassword: action.payload }
-            }
-        }
-
         case Actions.LOGOUT: {
 
             return {
                 ...state,
-                login: { jwtWithoutPassword: "", email: "", message: "", loggedIn: false }
+                login: { jwtWithoutPassword: "", email: "", message: "", loggedIn: false, role: "" },
             }
         }
 

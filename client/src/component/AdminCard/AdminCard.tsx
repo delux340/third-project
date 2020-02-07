@@ -2,20 +2,16 @@ import React, { ChangeEvent } from "react"
 import '../Vacations/style.css';
 import { connect } from "react-redux"
 import { CardTypes, props, state } from "./interface"
-import { followVacation } from "../../redux/actions"
-import { Checkbox } from "@material-ui/core";
+import { removeVacation } from "../../redux/actions"
+import DeleteModal from "../modals/DeleteModal"
+import Editmodal from "../modals/EditModal"
 
-class Card extends React.Component<any, state> {
+class AdminCard extends React.Component<any, state> {
 
-    handeFollow = (e: ChangeEvent<HTMLInputElement>) => {
-        const { checked } = e.target
-        const { id } = this.props.vacation
-        this.props.actions.follow(checked, id)
-    }
 
     render() {
         const { vacation } = this.props
-        const followed = vacation.is_following ? true : false
+        const { id } = vacation
         return (
             <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12" >
                 <div className="card cardStyle">
@@ -27,11 +23,10 @@ class Card extends React.Component<any, state> {
                         <p className="card-text"><b>Until:</b>{vacation.until}</p>
                         <p className="card-text"><b>Price:</b> {vacation.price}</p>
                         <p className="card-text"><b>Followers:</b> {vacation.followers_count}</p>
-                        <Checkbox checked={followed} onChange={this.handeFollow} className="btn btn-primary">Follow</Checkbox>
+                        <Editmodal  vacation={vacation} />
+                        <DeleteModal id={id} />
                     </div>
-                </div>
-            </div>
-
+                </div></div>
         )
     }
 
@@ -39,23 +34,23 @@ class Card extends React.Component<any, state> {
 
 
 
-const mapDispatchToProps = (dispatch: Function) => {
-    return {
-        actions: {
-            follow: (vacation_id: string, isFollowed: boolean) => dispatch(followVacation(isFollowed, vacation_id))
-        }
-    }
+// const mapDispatchToProps = (dispatch: Function) => {
+//     return {
+//         actions: {
+//             removeVacation: (vacationId: any) => { dispatch(removeVacation(vacationId)) }
+//         }
+//     }
 
-}
-
-
+// }
 
 
 
 
 
 
-export default connect(null, mapDispatchToProps)(Card)
+
+
+export default connect(null, null)(AdminCard)
 
 
 
