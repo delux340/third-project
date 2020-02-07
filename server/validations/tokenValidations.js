@@ -6,6 +6,7 @@ function VaildateToken(req, res, next) {
     jwt.verify(token, SECRET, (err, decoded) => {
         if (err) {
             console.log(err)
+            
             res.json({ token: "" })
         } else {
             const { id, role } = decoded

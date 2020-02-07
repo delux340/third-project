@@ -40,7 +40,7 @@ import mainAxios from "../axios/axios";
 //     }
 
 //     const mapStateToProps = (state: any) => {
-//         const { validatedStatus } = state
+//         const { token } = state.validatedStatus
 //         return {
 //             validatedStatus
 //         }
@@ -56,7 +56,7 @@ export const verficationWrapper = (WrappedComponent: any, adminRequierd: boolean
             super(props);
             this.state = {
                 verified: false,
-                isLoading: false,
+                isLoading: true,
                 role: ""
             }
         }
@@ -68,7 +68,6 @@ export const verficationWrapper = (WrappedComponent: any, adminRequierd: boolean
 
         componentWillMount() {
             // const { validatedStatus } = this.props
-            this.setState({ isLoading: true })
             this.verifyUser()
                 .then((result: any) => {
                     const { status, role } = result.data;
@@ -104,3 +103,4 @@ export const verficationWrapper = (WrappedComponent: any, adminRequierd: boolean
 
 
 
+//

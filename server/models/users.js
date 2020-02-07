@@ -26,30 +26,22 @@ async function register(req, res, next) {
 
 
 
-async function login(req, res, next) {
-    const { email, password } = req.body
-    const [result] = await pool.execute(getSalt(), [email])
-    const userSalt = result[0].salt
-    const encryptPass = bcrypt.hashSync(password, userSalt)
-    const [user] = await pool.execute(checkLoginParams(), [email, encryptPass])
-    const [first] = user
-    if (first) {
-        const { id, role } = first
-        const jwtWithoutPassword = await utils.getJwt({ id, role, password: null })
-        logger.info(`user ${email} logged in successfuly in ${moment().format("hh:mm:ss")}`)
-        req.token = { jwtWithoutPassword }
-        req.role = { role }
-        next()
+async function handleLogin(email, password) {
+    const userData = await functionA(email, password)
+    if (userData) {
+        const { id, role } = userData
+        const jwtWithoutPassword = await functionB(id, role, email);
+        return { jwtWithoutPassword, role }
     } else {
-        logger.info(`user ${email} has failed to login ${moment().format("hh:mm:ss")}`)
-        res.json({ message: "not exists", jwtWithoutPassword: "", role: "" })
+        failed()
+
     }
 }
 
 
 
 module.exports = {
-    login,
+    handleLogin,
     register
 }
 
@@ -67,4 +59,28 @@ function insetUsersQuery() {
 
 function getSalt() {
     return `SELECT salt FROM vacations_data.users where email = ?`
+}
+
+
+async function functionA(email, password) {
+    const [result] = await pool.execute(getSalt(), [email])
+    const userSalt = result[0].salt
+    const encryptPass = bcrypt.hashSync(password, userSalt)
+    const [first] = await pool.execute(checkLoginParams(), [email, encryptPass]); // [rows, f]
+    const [result] = first
+    return result
+}
+async function functionB(id, role, email) {
+
+
+    const jwtWithoutPassword = await utils.getJwt({ id, role, password: null });
+    logger.info(`user ${email} logged in successfuly in ${moment().format("hh:mm:ss")}`)
+    return jwtWithoutPassword
+
+}
+
+function failed(email) {
+    const errorMessage = `user ${email} has failed to login ${moment().format("hh:mm:ss")}`;
+    logger.error(errorMessage);
+    throw new Error(errorMessage);
 }

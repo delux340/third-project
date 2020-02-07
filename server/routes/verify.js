@@ -2,7 +2,7 @@ const router = require("express").Router()
 const jwt = require("jsonwebtoken")
 
 router.get("/", (req, res) => {
-    const { token } = req.headers
+    const { token } =req.headers
     const { SECRET } = process.env
 
     if (!token) return res.json({ status: false, role: "" })

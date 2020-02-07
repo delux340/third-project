@@ -1,9 +1,11 @@
 import axios from "axios";
 import mainAxios from "../component/axios/axios"
+const baseURL = "http://localhost:4000"
+
 
 export const registerService = async (user: any) => {
     try {
-        const { data } = await axios.post("http://localhost:4000/users/register", user);
+        const { data } = await axios.post(`${baseURL}/users/register`, user);
         return data;
     } catch (ex) {
         return console.log(ex)
@@ -12,7 +14,7 @@ export const registerService = async (user: any) => {
 
 export const loginService = async (user: any) => {
     try {
-        const { data } = await axios.post("http://localhost:4000/users/login", user);
+        const { data } = await axios.post(`${baseURL}/users/login`, user);
         console.log(data)
         const { jwtWithoutPassword } = data
         localStorage.setItem("token", jwtWithoutPassword)

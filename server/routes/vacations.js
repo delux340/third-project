@@ -17,7 +17,6 @@ router.post("/add", async (req, res) => {
 
 router.post("/edit", async (req, res) => {
     const { description, destination, image, from, until, price, id: vacationId } = req.body
-    console.log(req.body)
     const { id } = req.user_details
     await pool.execute(editVacation(), [description, destination, image, from, until, price, vacationId])
     const [result] = await pool.execute(getAllVacations(), [id])
