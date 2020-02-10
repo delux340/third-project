@@ -1,4 +1,4 @@
-const { handleLogin } = require("../models/users")
+const { handleLogin, handleRegister } = require("../models/users")
 
 
 async function login(req, res) {
@@ -12,8 +12,17 @@ async function login(req, res) {
 
 }
 
-
+async function register(req, res) {
+    const { email, password, firstName, lastName } = req.body
+    await handleRegister(email, password, firstName, lastName)
+    try {
+        res.status(200).json({ message: "registerd successfuly", registerRedirect: true });
+    } catch (err) {
+        res.status(404).json({ message: err.message, registerRedirect: false })
+    }
+}
 
 module.exports = {
-    login
+    login,
+    register
 }

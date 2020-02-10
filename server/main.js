@@ -9,7 +9,7 @@ const verify = require("./routes/verify")
 const follow = require("./routes/follow")
 require("dotenv").config()
 
-app.listen(process.env.PORT || 4000, () => console.log(`now listening to port ${4000}`))
+app.listen(process.env.PORT || 4000, () => console.log(`now listening to port ${process.env.PORT}`))
 app.use(bodyParser.json())
 app.use(cors())
 

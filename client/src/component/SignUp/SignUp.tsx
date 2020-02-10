@@ -33,23 +33,23 @@ class SignIn extends React.Component<any, any>{
 
     handleClick = () => {
         this.props.actions.register(this.state)
-        
+
     }
-  
-     
+
+
 
     render() {
         const { registerRedirect } = this.props
-        if (registerRedirect) return (<Redirect to="/signin"/>)
-      
+        if (registerRedirect) return (<Redirect to="/signin" />)
+
         const token = localStorage.getItem("token")
         try {
             if (token)
-                return (<Redirect to="/"/>)
+                return (<Redirect to="/" />)
         } catch (ex) {
             console.log(ex)
         }
-        
+
         return (
             <div className="signStyle">
                 <Container component="main" maxWidth="xs">
@@ -67,22 +67,26 @@ class SignIn extends React.Component<any, any>{
                                         autoComplete="fname"
                                         name="firstName"
                                         variant="outlined"
-                                        // required
+                                        required
                                         fullWidth
                                         id="firstName"
                                         label="First Name"
                                         autoFocus
+                                        onChange={this.handleChange}
+
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <TextField
                                         variant="outlined"
-                                        // required
+                                        required
                                         fullWidth
                                         id="lastName"
                                         label="Last Name"
                                         name="lastName"
                                         autoComplete="lname"
+                                        onChange={this.handleChange}
+
                                     />
                                 </Grid>
                                 <Grid item xs={12}>

@@ -6,11 +6,11 @@ function VaildateToken(req, res, next) {
     jwt.verify(token, SECRET, (err, decoded) => {
         if (err) {
             console.log(err)
-            
-            res.json({ token: "" })
+
+            res.json({ message: "token is not valid" })
         } else {
             const { id, role } = decoded
-            req.user_details = { id, role } // change it to req.user_detais = {id, role}
+            req.user_details = { id, role }
             next()
         }
     })

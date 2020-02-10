@@ -12,7 +12,6 @@ function getJwt(user) {
                     resolve(token)
                 }
             })
-
     })
 }
 module.exports = { getJwt }
