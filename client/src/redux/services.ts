@@ -54,7 +54,7 @@ export const addVacationService = async (vacationObj: any) => {
 }
 export const editVacationService = async (vacationObj: any) => {
     try {
-        const { data } = await mainAxios.post('vacations/edit', vacationObj);
+        const { data } = await mainAxios.put('vacations/edit', vacationObj);
         return data
     }
     catch (ex) {
@@ -63,7 +63,7 @@ export const editVacationService = async (vacationObj: any) => {
 }
 export const removeVacationService = async (vacationId: any) => {
     try {
-        const { data } = await mainAxios.post('vacations/remove', { vacationId });
+        const { data } = await mainAxios.delete('vacations/remove', { data:{vacationId} });
         return data
     }
     catch (ex) {

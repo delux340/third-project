@@ -1,6 +1,10 @@
 import React from "react"
 import Header from "../Header/Header"
 import TextField from '@material-ui/core/TextField';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+
+
 import '../SignIn/style.css'
 import { connect } from "react-redux";
 import { addVacation } from "../../redux/actions"
@@ -77,26 +81,30 @@ class AddVacation extends React.Component<any, any>{
 
                             />
                             <br></br><br></br><br></br>
-                            <TextField
-                                id="standard-multiline-flexible"
-                                label="from"
-                                multiline
-                                rowsMax="4"
-                                name="from"
-                                onChange={this.handleChange}
-                                value={from}
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <TextField
+                                    id="standard-multiline-flexible"
+                                    label="from"
+                                    multiline
+                                    rowsMax="4"
+                                    name="from"
+                                    type="date"
+                                    onChange={this.handleChange}
+                                    value={from}
 
-                            />
-                            <TextField
-                                id="standard-textarea"
-                                label="until"
-                                placeholder="Placeholder"
-                                multiline
-                                name="until"
-                                onChange={this.handleChange}
-                                value={until}
+                                />
+                                <TextField
+                                    id="standard-textarea"
+                                    label="until"
+                                    placeholder="Placeholder"
+                                    multiline
+                                    name="until"
+                                    type="date"
+                                    onChange={this.handleChange}
+                                    value={until}
+                                />
+                            </MuiPickersUtilsProvider>
 
-                            />
                             <TextField
                                 id="standard-textarea"
                                 label="price"
@@ -129,3 +137,11 @@ const mapDispatchToProps = (dispatch: any) => {
 
 
 export default connect(null, mapDispatchToProps)(AddVacation)
+
+
+
+
+
+
+
+

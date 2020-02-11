@@ -1,14 +1,13 @@
 const jwt = require("jsonwebtoken")
 
-function hanldeVerify(token, SECRET) {
-    if (!token) verifyFailed()
+async function hanldeVerify(token, SECRET) {
+    if (!token) return
 
     const role = jwt.verify(token, SECRET, (err, decoded) => {
         if (err) {
             verifyFailed()
         } else {
             return verifySuccsess(decoded)
-            
         }
     })
     return role
@@ -22,5 +21,6 @@ function verifySuccsess(decoded) {
     return role
 }
 function verifyFailed() {
-    throw new ERROR
+    const errorMessage = "something has gone wrong"
+    throw new Error(errorMessage)
 }

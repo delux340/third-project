@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs")
 const salt = bcrypt.genSaltSync(10)
 const logger = require("../utils/logger/logger")
 const utils = require("../utils/users/jsonWebToken")
-
+const queries = require("../queries/user")
 
 async function handleRegister(email, password, first_name, last_name) {
     const first = await ifUserExists(email)
@@ -24,21 +24,11 @@ async function handleLogin(email, password) {
     }
 }
 
-
-
-module.exports = {
-    handleLogin,
-    handleRegister
-}
-
-
-
 async function getLoginParams(email, password) {
-    const [saltResult] = await pool.execute(getSalt(), [email])
+    const [saltResult] = await pool.execute(queries.getSalt(), [email])
     const userSalt = saltResult[0].salt
-
     const encryptPass = bcrypt.hashSync(password, userSalt)
-    const [first] = await pool.execute(checkLoginParams(), [email, encryptPass]); // [rows, f]
+    const [first] = await pool.execute(queries.checkLoginParams(), [email, encryptPass]);
     const [result] = first
     return result
 }
@@ -56,7 +46,7 @@ function loginFailed(email) {
 }
 
 async function ifUserExists(email) {
-    const [user] = await pool.execute(searchUsersExists(), [email])
+    const [user] = await pool.execute(queries.searchUsersExists(), [email])
     const [first] = user
     return first
 }
@@ -69,7 +59,7 @@ function registerFail(email) {
 
 async function registerSucssess(password, salt, email, first_name, last_name) {
     const encryptPass = bcrypt.hashSync(password, salt)
-    await pool.execute(insetUsersQuery(), [email, first_name, last_name, encryptPass, salt])
+    await pool.execute(queries.insetUsersQuery(), [email, first_name, last_name, encryptPass, salt])
     logger.info(`user ${email} registerd successfuly in ${moment().format("hh:mm:ss")}`)
     return
 }
@@ -80,18 +70,7 @@ async function loginSuccess(userData, email) {
     return { jwtWithoutPassword, role }
 }
 
-
-function searchUsersExists() {
-    return 'select * from users where email = ?'
-}
-function checkLoginParams() {
-    return 'select * from users where email = ? and password = ?'
-}
-
-function insetUsersQuery() {
-    return "INSERT INTO `vacations_data`.`users` (`email`, `first_name`, `last_name`, `password`,`salt`) VALUES (?,?,?,?,?);"
-}
-
-function getSalt() {
-    return `SELECT salt FROM vacations_data.users where email = ?`
+module.exports = {
+    handleLogin,
+    handleRegister
 }
