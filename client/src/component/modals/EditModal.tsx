@@ -66,7 +66,7 @@ class EditModal extends React.Component<any, any> {
         const { description, destination, image, from, until, price, } = this.state.vacation
         return (
             <div>
-                <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>Edit</Button>
+                <Button  variant="outlined" color="primary" onClick={this.handleClickOpen}>Edit</Button>
                 <Dialog
                     open={open}
                     onClose={this.handleClose}

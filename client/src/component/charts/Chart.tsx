@@ -1,77 +1,12 @@
-// import React from 'react';
-// import { Line } from 'react-chartjs-2';
+import React from 'react';
 import { connect } from "react-redux"
 import { getVacationsFollows } from "../../redux/actions"
-
-
-// class Charts extends React.Component<any, any>{
-
-//   componentDidMount() {
-//     const { getVacationsFollows } = this.props.actions
-//     getVacationsFollows()
-//   }
-//   render() {
-//     const { followers } = this.props
-//     const data = {
-//       labels: followers.map((itr: any) => itr.destination),
-//       datasets: [
-//         {
-//           label: 'vacations follows',
-//           fill: false,
-//           lineTension: 0.1,
-//           backgroundColor: 'rgba(75,192,192,0.4)',
-//           borderColor: 'rgba(75,192,192,1)',
-//           borderCapStyle: 'butt',
-//           borderDash: [],
-//           borderDashOffset: 0.0,
-//           borderJoinStyle: 'miter',
-//           pointBorderColor: 'rgba(75,192,192,1)',
-//           pointBackgroundColor: '#fff',
-//           pointBorderWidth: 1,
-//           pointHoverRadius: 5,
-//           pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-//           pointHoverBorderColor: 'rgba(220,220,220,1)',
-//           pointHoverBorderWidth: 2,
-//           pointRadius: 1,
-//           pointHitRadius: 10,
-//           data: followers.map((itr: any) => itr.followers_count)
-//         }
-//       ]
-//     };
-//     return (
-//       <div style={{ backgroundColor: "white" }}>
-//         <h2>Line Example</h2>
-//         <Line data={data} />
-//       </div>
-//     );
-//   }
-
-// }
-
-// const mapStateToProps = (state: any) => {
-//   const { followers } = state
-//   return {
-//     followers
-//   }
-
-// }
-
-// const mapDispatchToProps = (dispatch: any) => {
-
-//   return {
-//     actions: {
-//       getVacationsFollows: () => { dispatch(getVacationsFollows()) }
-//     }
-//   }
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Charts)
-import React from 'react';
 import { Pie } from 'react-chartjs-2';
+import { props, state } from "./interface"
+import { initialState } from "../../redux/interface"
+import { CardTypes } from "../Card/interface"
 
-
-
-class Charts extends React.Component<any, any>{
+class Charts extends React.Component<props, state>{
 
   componentDidMount() {
     const { getVacationsFollows } = this.props.actions
@@ -80,13 +15,13 @@ class Charts extends React.Component<any, any>{
   render() {
     const { followers } = this.props
     const data = {
-      labels: followers.map((itr: any) => itr.destination),
+      labels: followers.map((itr: CardTypes) => itr.destination),
 
       datasets: [{
-        data: followers.map((itr: any) => itr.followers_count),
+        data: followers.map((itr: CardTypes) => itr.followers_count),
         backgroundColor: [
-          '#FF6384', '#36A2EB', '#FFCE56', 
-          '#FF6633', '#FFB399','#FF33FF', '#FFFF99', '#00B3E6',
+          '#FF6384', '#36A2EB', '#FFCE56',
+          '#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
           '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
           '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A',
           '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
@@ -123,7 +58,7 @@ class Charts extends React.Component<any, any>{
   }
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: initialState) => {
   const { followers } = state
   return {
     followers
@@ -131,7 +66,7 @@ const mapStateToProps = (state: any) => {
 
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Function) => {
 
   return {
     actions: {

@@ -1,30 +1,30 @@
 import Actions from "./actions.config"
-import { registerService, loginService, verifyTokenService, getVacationsService, followService, addVacationService, removeVacationService, editVacationService,getVacationsFollowService } from "./services"
+import { registerService, loginService, verifyTokenService, getVacationsService, followService, addVacationService, removeVacationService, editVacationService, getVacationsFollowService } from "./services"
 
-export const registerUserSuccess = (user: any) => {
+export const registerUserSuccess = (user: object) => {
     return {
         type: Actions.REGISTER,
         payload: user
     }
 }
 
-export const registerUser = (user: any) => {
-    return async (dispatch: any) => {
+export const registerUser = (user: object) => {
+    return async (dispatch: Function) => {
         const data = await registerService(user)
         dispatch(registerUserSuccess(data))
     }
 }
 
-export const loginUserSuccess = (user: any) => {
+export const loginUserSuccess = (user: object) => {
     return {
         type: Actions.LOGIN,
         payload: user
     }
 }
 
-export const loginUser = (user: any) => {
+export const loginUser = (user: object) => {
     console.log(user)
-    return async (dispatch: any) => {
+    return async (dispatch: Function) => {
         const data = await loginService(user)
         dispatch(loginUserSuccess(data))
 
@@ -44,7 +44,7 @@ export const resetRedirect = () => {
     }
 }
 
-export const verifyTokenSuccess = (data: any) => {
+export const verifyTokenSuccess = (data: object) => {
     return {
         type: Actions.VALIDATED_STATUS,
         payload: data
@@ -52,14 +52,14 @@ export const verifyTokenSuccess = (data: any) => {
 }
 
 export const verifyToken = () => {
-    return async (dispatch: any) => {
+    return async (dispatch: Function) => {
         const data = await verifyTokenService()
         dispatch(verifyTokenSuccess(data))
     }
 }
 
 
-export const vacationsSuccess = (vacations: any) => {
+export const vacationsSuccess = (vacations: Array<object>) => {
     return {
         type: Actions.VACATIONS,
         payload: vacations
@@ -68,34 +68,34 @@ export const vacationsSuccess = (vacations: any) => {
 
 
 export const getAllVacations = () => {
-    return async (dispatch: any) => {
+    return async (dispatch: Function) => {
         const data = await getVacationsService()
         dispatch(vacationsSuccess(data))
     }
 
 }
-export const followVacation = (isFollowed: any, vacation_id: any) => {
+export const followVacation = (vacation_id: number, isFollowed: boolean, ) => {
     return async (dispatch: Function) => {
-        const data = await followService(isFollowed, vacation_id)
+        const data = await followService(vacation_id, isFollowed)
         dispatch(vacationsSuccess(data))
     }
 
 }
-export const addVacation = (vacationObj: any) => {
+export const addVacation = (vacationObj: object) => {
     return async () => {
         await addVacationService(vacationObj)
     }
 
 }
-export const removeVacation = (vacationId: any) => {
+export const removeVacation = (vacationId: number) => {
 
-    return async (dispatch: any) => {
+    return async (dispatch: Function) => {
         const data = await removeVacationService(vacationId)
         dispatch(vacationsSuccess(data))
     }
 
 }
-export const editVacation = (vacationObj: any) => {
+export const editVacation = (vacationObj: object) => {
     return async (dispatch: Function) => {
         const data = await editVacationService(vacationObj)
         dispatch(vacationsSuccess(data))
@@ -111,7 +111,7 @@ export const getVacationsFollows = () => {
 
     }
 }
-export const getFollowersSuccsess = (follows: any) => {
+export const getFollowersSuccsess = (follows: number) => {
     return {
         type: Actions.FOLLOWERS,
         payload: follows

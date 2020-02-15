@@ -5,6 +5,7 @@ import Card from "../Card/Card"
 import AdminCard from "../AdminCard/AdminCard"
 import Header from "../Header/Header"
 import { CardTypes } from "../Card/interface"
+import { initialState } from "../../redux/interface"
 
 class Vacations extends React.Component<any, any>{
     constructor(props: any) {
@@ -49,14 +50,15 @@ class Vacations extends React.Component<any, any>{
     }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: initialState) => {
     const { vacations } = state
+    const { role } = state.login
     return {
-        vacations
+        vacations, role
     }
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Function) => {
     return {
         actions: {
             vacations: () => dispatch(getAllVacations())

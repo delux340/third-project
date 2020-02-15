@@ -1,16 +1,17 @@
 import React, { ChangeEvent } from "react"
 import '../Vacations/style.css';
 import { connect } from "react-redux"
-import { CardTypes, props, state } from "./interface"
+import { props, state } from "./interface"
 import { followVacation } from "../../redux/actions"
 import { Checkbox } from "@material-ui/core";
 
+//change any
 class Card extends React.Component<any, state> {
 
-    handeFollow = (e: ChangeEvent<HTMLInputElement>) => {
+    handeFollow = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { checked } = e.target
         const { id } = this.props.vacation
-        this.props.actions.follow(checked, id)
+        this.props.actions.follow(id, checked)
     }
 
     render() {
@@ -42,18 +43,10 @@ class Card extends React.Component<any, state> {
 const mapDispatchToProps = (dispatch: Function) => {
     return {
         actions: {
-            follow: (vacation_id: string, isFollowed: boolean) => dispatch(followVacation(isFollowed, vacation_id))
+            follow: (vacation_id: number, isFollowed: boolean) => dispatch(followVacation(vacation_id, isFollowed))
         }
     }
-
 }
-
-
-
-
-
-
-
 
 export default connect(null, mapDispatchToProps)(Card)
 

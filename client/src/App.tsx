@@ -1,24 +1,25 @@
 import React from 'react';
-import './App.css';
 import { Switch, BrowserRouter, Redirect, Route } from 'react-router-dom'
 import Navbar from "./component/navBar/navBar"
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { connect } from "react-redux"
 import { verifyToken } from "./redux/actions"
 import { AppRoutes } from './component/appRouter/appRouter';
 import { routes } from './component/appRouter/routers.config';
 import SignIn from "./component/SignIn/SignIn"
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { initialState } from "./redux/interface"
 
 
-class App extends React.Component<any, any>{
+interface state { }
+interface props { actions: { verifyToken: Function } }
+class App extends React.Component<props, state>{
 
   componentDidMount() {
     this.props.actions.verifyToken()
-
   }
   render() {
     return (
-
       <div className="App">
         <BrowserRouter>
           <Navbar />
@@ -33,8 +34,15 @@ class App extends React.Component<any, any>{
   }
 }
 
+const mapStateToProps = (state: initialState) => {
+  const { login } = state
+  return {
+    login
+  }
+}
 
-const mapDispatchToProps = (dispatch: any) => {
+
+const mapDispatchToProps = (dispatch: Function) => {
   return {
     actions: {
       verifyToken: () => {
@@ -42,13 +50,6 @@ const mapDispatchToProps = (dispatch: any) => {
       }
 
     }
-  }
-}
-
-const mapStateToProps = (state: any) => {
-  const { validatedStatus, login } = state
-  return {
-    validatedStatus, login
   }
 }
 

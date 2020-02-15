@@ -1,55 +1,8 @@
 import React from "react";
 import { Redirect } from "react-router-dom"
-import { connect } from "react-redux"
-import { verifyToken } from "../../redux/actions"
 import mainAxios from "../axios/axios";
 
-// export const verficationWrapper = (WrappedComponent: any) => {
-
-//     class VerificationHOCValidator extends React.Component<any, any> {
-//         constructor(props: any) {
-//             super(props);
-//             this.state = {
-//                 isLoading: false
-//             }
-//         }
-
-
-
-
-//          componentDidMount() {
-//             this.props.actions.verifyToken()
-//             this.setState({ isLoading: true })
-
-//         }
-
-//         render() {
-//             if (this.state.isLoading) return <div className="loader">Loading...</div>
-//             if (!this.props.validatedStatus) return <Redirect to="/signIn" />
-//             return <WrappedComponent {...this.props} />
-//         }
-//     }
-
-
-//     const mapDispatchToProps = (dispatch: any) => {
-//         return {
-//             actions: {
-//                 verifyToken: () => { dispatch(verifyToken()) }
-//             }
-//         }
-//     }
-
-//     const mapStateToProps = (state: any) => {
-//         const { token } = state.validatedStatus
-//         return {
-//             validatedStatus
-//         }
-//     }
-
-//     return connect(mapStateToProps, mapDispatchToProps)(VerificationHOCValidator);
-// }
-
-
+//types
 export const verficationWrapper = (WrappedComponent: any, adminRequierd: boolean) => {
     class VerificationHOCValidator extends React.Component<any, any> {
         constructor(props: any) {
@@ -62,31 +15,36 @@ export const verficationWrapper = (WrappedComponent: any, adminRequierd: boolean
         }
 
 
-        verifyUser = () => {
-            return mainAxios.get('verify');
+        verifyUser = async () => {
+            const data = await mainAxios.get('verify');
+            return data
         }
 
-        componentWillMount() {
-            // const { validatedStatus } = this.props
-            this.verifyUser()
-                .then((result: any) => {
-                    const { status, role } = result.data;
-                    this.setState((previousState: any, currentProps: any) => {
-                        return { ...previousState, verified: status, isLoading: false, role };
-                    });
-                })
+        async componentWillMount() {
+            try {
+                console.log("Try")
+                const { status, role } = await this.verifyUser()
+                this.setState((previousState: any, currentProps: any) => {
+                    return { ...previousState, verified: status, isLoading: false, role };
+                });
+
+            }
+            catch (err) {
+                console.log("catch")
+                return this.setState({ verified: false, isLoading: false, role: "" })
+            }
         }
 
         render() {
-            if (this.state.isLoading) return <div className="loader">Loading...</div>
+            const { isLoading, verified, role } = this.state
+            console.log(this.state)
 
-            if (!this.state.verified) {
+            if (isLoading) return <div className="loader">Loading...</div>
+
+            if (!verified) {
                 localStorage.setItem("token", "")
                 return <Redirect to="/signIn" />
-
             } else {
-                const { role } = this.state
-                const { adminRequierd } = this.props
                 if (adminRequierd && role === "admin" || !adminRequierd) {
                     return <WrappedComponent {...this.props} role={role} />
                 } else {
@@ -103,4 +61,3 @@ export const verficationWrapper = (WrappedComponent: any, adminRequierd: boolean
 
 
 
-//

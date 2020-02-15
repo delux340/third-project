@@ -3,13 +3,9 @@ import { connect } from "react-redux"
 import { loginUser, resetRedirect } from "../../redux/actions"
 import { Link, Redirect } from "react-router-dom"
 import './style.css';
-
-
-
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -33,15 +29,18 @@ class SignIn extends React.Component<any, any>{
         this.props.actions.login(this.state)
     }
 
-    render() {
+    handleRedirect = () => {
         const token = localStorage.getItem("token")
         try {
             if (token)
-                return (<Redirect to="/" />)
+                this.props.history.push("/")
         } catch (ex) {
             console.log(ex)
         }
+    }
 
+    render() {
+        this.handleRedirect()
         this.props.actions.redirectReset()
         return (
             <div className="signStyle">

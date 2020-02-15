@@ -1,8 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
 import { registerUser } from "../../redux/actions"
-import '../SignIn/style.css'
-
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -11,6 +9,8 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Link, Redirect } from "react-router-dom";
+import { initialState } from "../../redux/interface"
+import '../SignIn/style.css'
 
 
 
@@ -145,7 +145,7 @@ class SignIn extends React.Component<any, any>{
 
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: initialState) => {
 
     const { registerRedirect } = state.register
     return {
@@ -153,7 +153,7 @@ const mapStateToProps = (state: any) => {
     }
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Function) => {
     return {
         actions: {
             register: (user: any) => dispatch(registerUser(user))

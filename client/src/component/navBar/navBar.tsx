@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { logout } from "../../redux/actions"
 import { routes } from "../appRouter/routers.config"
 import { AppLinks } from "../appRouter/appRouter"
+import { initialState } from "../../redux/interface"
 
 class Navbar extends React.Component<any, any>{
     constructor(props: any) {
@@ -35,19 +36,18 @@ class Navbar extends React.Component<any, any>{
                 </nav>
             </div>
         );
-
     }
 }
 
-const mapStateToProps = (state: any) => {
-    const { role } = state.login
+const mapStateToProps = (state: initialState) => {
 
+    const { role, message } = state.login
     return {
-        role
+        role, message
     }
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Function) => {
     return {
         actions: {
             logout: () => dispatch(logout())

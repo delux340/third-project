@@ -2,11 +2,10 @@ import Actions from "./actions.config"
 
 const initialState = {
     register: { registerRedirect: false, message: "" },
-    login: { jwtWithoutPassword: "", message: "", role: "" },
+    login: { message: "", role: "" },
     vacations: [],
     followers: []
 }
-
 
 export default function root(state = initialState, action: any) {
     switch (action.type) {
@@ -26,10 +25,9 @@ export default function root(state = initialState, action: any) {
             }
         }
         case Actions.VALIDATED_STATUS: {
-            const { login } = initialState
             return {
                 ...state,
-                login: { ...login, role: action.payload.role }
+                login: action.payload
             }
         }
 
@@ -51,7 +49,7 @@ export default function root(state = initialState, action: any) {
 
             return {
                 ...state,
-                login: { jwtWithoutPassword: "", email: "", message: "", loggedIn: false, role: "" },
+                login: { message: "", role: "" },
             }
         }
 

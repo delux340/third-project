@@ -7,7 +7,8 @@ export interface CardTypes {
     followers: number
     image: string
     id?: number
-
+    is_following: number
+    followers_count: number
 }
 export interface props {
     vacations: Array<CardTypes>,

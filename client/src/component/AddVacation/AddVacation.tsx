@@ -3,17 +3,16 @@ import Header from "../Header/Header"
 import TextField from '@material-ui/core/TextField';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-
-
-import '../SignIn/style.css'
+import moment from "moment";
 import { connect } from "react-redux";
 import { addVacation } from "../../redux/actions"
 import AddVacationModal from "../modals/AddVacationModal"
+import { props, state } from "./interface"
+import '../SignIn/style.css'
 
 
-
-class AddVacation extends React.Component<any, any>{
-    constructor(props: any) {
+class AddVacation extends React.Component<props, state>{
+    constructor(props: props) {
         super(props)
         this.state = {
             description: "",
@@ -24,9 +23,9 @@ class AddVacation extends React.Component<any, any>{
             price: ""
         }
     }
-    handleChange = (e: any) => {
+    handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
-        this.setState({ [name]: value })
+        this.setState({ [name]: value } as any)
     }
 
     handleClick = () => {
@@ -42,9 +41,15 @@ class AddVacation extends React.Component<any, any>{
             price: ""
         })
     }
+
+    handleDate = () => {
+        const date = moment().format("YYYY-MM-DD")
+        this.setState({ from: date, until: date })
+    }
+
     render() {
         const { description, destination, image, from, until, price } = this.state
-
+        if (!from || !until) this.handleDate()
         return (
             <div style={{ margin: "25px" }}>
                 <div className="signStyle" style={{ height: "300px" }}>
@@ -63,58 +68,49 @@ class AddVacation extends React.Component<any, any>{
                             <TextField
                                 id="standard-textarea"
                                 label="destination"
-                                placeholder="Placeholder"
                                 multiline
                                 name="destination"
                                 onChange={this.handleChange}
                                 value={destination}
-
                             />
                             <TextField
                                 id="standard-textarea"
                                 label="image"
-                                placeholder="Placeholder"
                                 multiline
                                 name="image"
                                 onChange={this.handleChange}
                                 value={image}
-
                             />
-                            <br></br><br></br><br></br>
+                            <br></br>
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <TextField
                                     id="standard-multiline-flexible"
-                                    label="from"
-                                    multiline
                                     rowsMax="4"
                                     name="from"
                                     type="date"
                                     onChange={this.handleChange}
                                     value={from}
-
+                                    label="from"
                                 />
                                 <TextField
                                     id="standard-textarea"
-                                    label="until"
-                                    placeholder="Placeholder"
-                                    multiline
                                     name="until"
                                     type="date"
                                     onChange={this.handleChange}
                                     value={until}
+                                    label="until"
+
                                 />
                             </MuiPickersUtilsProvider>
-
                             <TextField
                                 id="standard-textarea"
                                 label="price"
-                                placeholder="Placeholder"
                                 multiline
                                 name="price"
                                 onChange={this.handleChange}
                                 value={price}
                             />
-                            <br></br><br></br><br></br>
+                            <br></br>
                             <AddVacationModal vacation={this.state} cleanState={this.cleanState} />
                         </div>
                     </form>
@@ -126,10 +122,10 @@ class AddVacation extends React.Component<any, any>{
 }
 
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Function) => {
     return {
         actions: {
-            addVacation: (vacationObj: any) => { dispatch(addVacation(vacationObj)) }
+            addVacation: (vacationObj: object) => { dispatch(addVacation(vacationObj)) }
         }
     }
 }
