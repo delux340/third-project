@@ -1,8 +1,6 @@
 import React from "react"
+import {headerProps} from "./interface"
 
-interface headerProps {
-    header: string
-}
 
 const Header = (props: headerProps) => {
     return (

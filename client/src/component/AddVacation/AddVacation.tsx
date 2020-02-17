@@ -6,7 +6,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import moment from "moment";
 import { connect } from "react-redux";
 import { addVacation } from "../../redux/actions"
-import AddVacationModal from "../modals/AddVacationModal"
+import AddVacationModal from "../modals/AddVacation/AddVacationModal"
 import { props, state } from "./interface"
 import '../SignIn/style.css'
 
@@ -23,6 +23,7 @@ class AddVacation extends React.Component<props, state>{
             price: ""
         }
     }
+    
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
         this.setState({ [name]: value } as any)

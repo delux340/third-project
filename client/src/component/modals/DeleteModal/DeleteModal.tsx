@@ -6,12 +6,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { connect } from "react-redux";
-import { removeVacation } from "../../redux/actions"
+import { removeVacation } from "../../../redux/actions"
+import { state, props } from "./interface"
 
 
-
-class DeleteModal extends React.Component<any, any> {
-    constructor(props: any) {
+class DeleteModal extends React.Component<props, state> {
+    constructor(props: props) {
         super(props)
         this.state = {
             open: false
@@ -34,7 +34,6 @@ class DeleteModal extends React.Component<any, any> {
 
     render() {
         const { open } = this.state
-
         return (
             <div>
 

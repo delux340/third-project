@@ -10,11 +10,11 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Link, Redirect } from "react-router-dom";
 import { initialState } from "../../redux/interface"
+import { state, props } from "./interface"
 import '../SignIn/style.css'
 
 
-
-class SignIn extends React.Component<any, any>{
+class SignIn extends React.Component<any, state>{
     constructor(props: any) {
         super(props)
         this.state = {
@@ -27,7 +27,7 @@ class SignIn extends React.Component<any, any>{
 
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
-        this.setState({ [name]: value })
+        this.setState({ [name]: value } as any)
     }
 
 
@@ -35,27 +35,21 @@ class SignIn extends React.Component<any, any>{
         this.props.actions.register(this.state)
 
     }
-
-
-
-    render() {
+    handleRedirect = () => {
         const { registerRedirect } = this.props
-        if (registerRedirect) return (<Redirect to="/signin" />)
-
         const token = localStorage.getItem("token")
-        try {
-            if (token)
-                return (<Redirect to="/" />)
-        } catch (ex) {
-            console.log(ex)
-        }
+        if (registerRedirect) this.props.history.push("/signin")
+        if (token) this.props.history.push("/")
 
+
+    }
+    render() {
+        this.handleRedirect()
         return (
             <div className="signStyle">
                 <Container component="main" maxWidth="xs">
                     <CssBaseline />
                     <div >
-
                         <Typography component="h1" variant="h5">
                             Sign up
                     </Typography>
@@ -156,7 +150,7 @@ const mapStateToProps = (state: initialState) => {
 const mapDispatchToProps = (dispatch: Function) => {
     return {
         actions: {
-            register: (user: any) => dispatch(registerUser(user))
+            register: (user: object) => dispatch(registerUser(user))
         }
     }
 }

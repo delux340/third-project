@@ -1,6 +1,4 @@
 import React from "react"
-import Home from "../Home/Home"
-// import SignIn from "../SignIn/SignIn"
 import SignUp from "../SignUp/SignUp"
 import Vacations from "../Vacations/Vacations"
 import { verficationWrapper } from './auth'
@@ -9,10 +7,9 @@ import Charts from "../charts/Chart"
 
 export const routes = [
 
-    { showFor: "all", exact: true, isVisible: true, title: "Home", path: "/", component: Home },
     { showFor: "none", exact: true, isVisible: false, title: "Sign up", path: "/signup", component: SignUp },
     {
-        showFor: "all", exact: true, isVisible: true, title: "Vacations", path: "/vacations", component: (props) => {
+        showFor: "all", exact: true, isVisible: true, title: "Vacations", path: "/", component: (props) => {
             const adminRequierd = false
             const VerificationHOCValidator = verficationWrapper(Vacations)
             return <VerificationHOCValidator {...props} adminRequierd={adminRequierd} />

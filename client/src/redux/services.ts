@@ -37,7 +37,6 @@ export const getVacationsService = async () => {
 export const verifyTokenService = async () => {
     try {
         const { data } = await mainAxios.get('verify');
-        console.log("data")
         return data
     }
     catch (err) {

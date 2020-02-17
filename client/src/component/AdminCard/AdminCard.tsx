@@ -2,8 +2,8 @@ import React from "react"
 import '../Vacations/style.css';
 import { connect } from "react-redux"
 import { props, state } from "./interface"
-import DeleteModal from "../modals/DeleteModal"
-import Editmodal from "../modals/EditModal"
+import DeleteModal from "../modals/DeleteModal/DeleteModal"
+import Editmodal from "../modals/EditModal/EditModal"
 
 class AdminCard extends React.Component<any, state> {
 

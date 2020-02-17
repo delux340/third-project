@@ -1,5 +1,5 @@
 import React from "react"
-import Header from "../Header/Header"
+import Header from "../../Header/Header"
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -7,10 +7,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import { TextField } from "@material-ui/core";
 import { connect } from "react-redux";
-import { editVacation } from "../../redux/actions"
+import { editVacation } from "../../../redux/actions"
+import { state, props } from "./interface"
 
-
-class EditModal extends React.Component<any, any> {
+class EditModal extends React.Component<props, state> {
     constructor(props: any) {
         super(props)
         this.state = {
@@ -60,13 +60,12 @@ class EditModal extends React.Component<any, any> {
         })
     }
 
-
     render() {
         const { open } = this.state
         const { description, destination, image, from, until, price, } = this.state.vacation
         return (
             <div>
-                <Button  variant="outlined" color="primary" onClick={this.handleClickOpen}>Edit</Button>
+                <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>Edit</Button>
                 <Dialog
                     open={open}
                     onClose={this.handleClose}
@@ -106,8 +105,6 @@ class EditModal extends React.Component<any, any> {
                                             onChange={this.handleChange}
                                             value={image}
                                         />
-
-
                                         <TextField
                                             id="standard-multiline-flexible"
                                             label="from"
@@ -138,7 +135,6 @@ class EditModal extends React.Component<any, any> {
                                     </div>
                                 </form>
                             </div>
-
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>

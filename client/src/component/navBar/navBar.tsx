@@ -5,21 +5,32 @@ import { logout } from "../../redux/actions"
 import { routes } from "../appRouter/routers.config"
 import { AppLinks } from "../appRouter/appRouter"
 import { initialState } from "../../redux/interface"
+import { state, props } from "./interface"
 
-class Navbar extends React.Component<any, any>{
-    constructor(props: any) {
+
+class Navbar extends React.Component<props, state>{
+    constructor(props: props) {
         super(props)
     }
 
-    render() {
+    handleRoutes = () => {
         const token = localStorage.getItem("token")
+
+        if (token) {
+            return <Link style={{ color: "black" }} to="/signin"> <button onClick={() => this.props.actions.logout()}
+                className="btn" style={{ backgroundColor: "#3f51b5" }} >
+                Sign out</button></Link>
+        } else {
+            return <Link style={{ color: "black" }} to="/signin"><button className="btn" style={{ backgroundColor: "#3f51b5" }}> Sign in</button></Link>
+
+        }
+    }
+
+
+
+    render() {
         const { role } = this.props
-        let Authroutes = token ?
-            <>
-                <button onClick={() => this.props.actions.logout()} className="btn" style={{ backgroundColor: "#3f51b5" }} > <Link style={{ color: "black" }} to="/signin">Sign out</Link></button>
-            </> :
-            <Link style={{ color: "black" }} to="/signin">
-                <button className="btn" style={{ backgroundColor: "#3f51b5" }}> Sign in</button></Link>
+        let Authroutes = this.handleRoutes()
         return (
             <div style={{ backgroundColor: "#3f51b5" }}>
                 <nav className="navbar navbar-expand-lg navbar-primary">

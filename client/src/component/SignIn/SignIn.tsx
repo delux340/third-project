@@ -1,8 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { loginUser, resetRedirect } from "../../redux/actions"
-import { Link, Redirect } from "react-router-dom"
-import './style.css';
+import { Link } from "react-router-dom"
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -10,10 +9,12 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import { state, props } from "./interface"
+import './style.css';
+import "../appRouter/auth.css"
 
-
-class SignIn extends React.Component<any, any>{
-    constructor(props: any) {
+class SignIn extends React.Component<props, state>{
+    constructor(props: props) {
         super(props)
         this.state = {
             email: "",
@@ -22,7 +23,7 @@ class SignIn extends React.Component<any, any>{
     }
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
-        this.setState({ [name]: value })
+        this.setState({ [name]: value } as any)
     }
 
     handleClick = () => {
@@ -35,7 +36,7 @@ class SignIn extends React.Component<any, any>{
             if (token)
                 this.props.history.push("/")
         } catch (ex) {
-            console.log(ex)
+            console.log("ex")
         }
     }
 
@@ -116,10 +117,10 @@ class SignIn extends React.Component<any, any>{
 }
 
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Function) => {
     return {
         actions: {
-            login: (user: any) => { dispatch(loginUser(user)) },
+            login: (user: object) => { dispatch(loginUser(user)) },
             redirectReset: () => { dispatch(resetRedirect()) }
 
         }

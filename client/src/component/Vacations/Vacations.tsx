@@ -1,52 +1,51 @@
 import React from "react"
 import { connect } from "react-redux"
 import { getAllVacations } from "../../redux/actions"
-import Card from "../Card/Card"
+import UserCard from "../UserCard/UserCard"
 import AdminCard from "../AdminCard/AdminCard"
 import Header from "../Header/Header"
-import { CardTypes } from "../Card/interface"
+import { CardTypes } from "../UserCard/interface"
 import { initialState } from "../../redux/interface"
+
+// interface state { }
+// interface props { actions: { vacations: Function }, vacations: Array<object>, role: string }
+//change
+
 
 class Vacations extends React.Component<any, any>{
     constructor(props: any) {
         super(props)
-        this.state = {
-            vacationsData: []
-        }
-
     }
+
     componentDidMount() {
         const { vacations } = this.props.actions
         vacations()
     }
 
-    render() {
+    handleVacations = () => {
         let { vacations } = this.props
-        vacations = Array.isArray(vacations) ? vacations : []
-        const { role } = this.props
-        if (role === "admin") {
-            return (
-                <div >
-                    <Header header="Vacations" />
-                    <div className="row">
-                        {vacations.map((itr: CardTypes) => {
-                            return (
-                                <AdminCard key={itr.id} vacation={itr} />)
-                        })}
-                    </div></div>
-            )
-        } else {
-            return (
-                <div>
-                    <Header header="Vacations" />
-                    <div className="row">
-                        {vacations.map((itr: CardTypes) => {
-                            return (<Card key={itr.id} vacation={itr} />)
-                        })}
-                    </div></div>
-            )
-        }
+        return vacations = Array.isArray(vacations) ? vacations : []
+    }
 
+    handleRole = () => {
+        const { role } = this.props
+        return role === "admin" ? AdminCard : UserCard
+    }
+
+    render() {
+        const CardRole = this.handleRole()
+        const vacations = this.handleVacations()
+        return (
+            <div>
+                <Header header="Vacations" />
+                <div className="row">
+                    {vacations.map((itr: CardTypes) => {
+                        return (
+                            <CardRole key={itr.id} vacation={itr} />)
+                    })}
+                </div>
+            </div>
+        )
     }
 }
 

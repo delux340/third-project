@@ -15,7 +15,7 @@ export const AppRoutes = (props) => {
 
 export const AppLinks = (props) => {
     const { routes, role } = props
-    return routes.filter(route => route.isVisible).filter((itr) => itr.showFor === role || itr.showFor === "all").map(route => <Link style={{ color: "black" }}
+    return routes.filter(route => route.isVisible).filter((itr) => itr.showFor === role || itr.showFor === "all").map(route => <Link key={route.title} style={{ color: "black" }}
         to={route.path}>
         <Button key={Route.title} color="inherit">{route.title}
         </Button>

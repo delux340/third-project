@@ -1,4 +1,4 @@
-import { CardTypes } from "../Card/interface"
+import { CardTypes } from "../UserCard/interface"
 
 export interface props {
     actions: { getVacationsFollows: Function }
