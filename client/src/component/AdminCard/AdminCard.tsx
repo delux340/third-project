@@ -1,15 +1,14 @@
 import React from "react"
 import '../Vacations/style.css';
-import { connect } from "react-redux"
 import { props, state } from "./interface"
 import DeleteModal from "../modals/DeleteModal/DeleteModal"
 import Editmodal from "../modals/EditModal/EditModal"
 
-class AdminCard extends React.Component<any, state> {
+class AdminCard extends React.Component<props, state> {
 
-    // to change any
     render() {
-        const { vacation } = this.props
+        const { vacation} = this.props
+        console.log(this)
         const { id, image, description, destination, from, until, price, followers_count } = vacation
         return (
             <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12" >
@@ -41,7 +40,7 @@ class AdminCard extends React.Component<any, state> {
 
 
 
-export default connect(null, null)(AdminCard)
+export default AdminCard
 
 
 

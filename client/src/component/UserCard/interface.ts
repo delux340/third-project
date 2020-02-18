@@ -11,9 +11,9 @@ export interface CardTypes {
     followers_count: number
 }
 export interface props {
-    vacations: Array<CardTypes>,
     actions: { follow: Function }
     vacation: CardTypes
+    key?: number
 }
 
 export interface state {

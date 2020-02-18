@@ -1,12 +1,16 @@
 import React from "react";
 import { Redirect } from "react-router-dom"
 import mainAxios from "../axios/axios";
+import { state, props } from "./interface"
 import "./auth.css"
 
-//types
-export const verficationWrapper = (WrappedComponent: any, adminRequierd: boolean) => {
-    class VerificationHOCValidator extends React.Component<any, any> {
-        constructor(props: any) {
+
+
+//React.ComponentType
+
+export const verficationWrapper = (WrappedComponent:any , adminRequierd: boolean) => {
+    class VerificationHOCValidator extends React.Component<props, state> {
+        constructor(props: props) {
             super(props);
             this.state = {
                 verified: false,
@@ -16,7 +20,7 @@ export const verficationWrapper = (WrappedComponent: any, adminRequierd: boolean
         }
 
         verifyUser = async () => {
-            const {data} = await mainAxios.get('verify');
+            const { data } = await mainAxios.get('verify');
             return data
         }
 
@@ -35,7 +39,7 @@ export const verficationWrapper = (WrappedComponent: any, adminRequierd: boolean
         render() {
             const { isLoading, verified, role } = this.state
             const { adminRequierd } = this.props
-         if (isLoading) return <div className="loader spinner-border text-primary" role="status">
+            if (isLoading) return <div className="loader spinner-border text-primary" role="status">
                 <span className="sr-only">Loading...</span>
             </div>
             if (!verified) {
