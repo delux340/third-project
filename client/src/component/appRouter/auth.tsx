@@ -1,14 +1,12 @@
 import React from "react";
 import { Redirect } from "react-router-dom"
 import mainAxios from "../axios/axios";
-import { state, props } from "./interface"
+import { state, props, wrapperProps } from "./interface"
 import "./auth.css"
 
 
 
-//React.ComponentType
-
-export const verficationWrapper = (WrappedComponent:any , adminRequierd: boolean) => {
+export const verficationWrapper = (WrappedComponent: React.ComponentType<wrapperProps>, adminRequierd: boolean) => {
     class VerificationHOCValidator extends React.Component<props, state> {
         constructor(props: props) {
             super(props);
@@ -27,12 +25,10 @@ export const verficationWrapper = (WrappedComponent:any , adminRequierd: boolean
         async componentWillMount() {
             try {
                 const { status, role } = await this.verifyUser()
-                this.setState((previousState: any, currentProps: any) => {
-                    return { ...previousState, verified: status, isLoading: false, role };
-                });
+                this.setState({ verified: status, isLoading: false, role })
             }
             catch (err) {
-                return this.setState({ verified: false, isLoading: false, role: "" })
+                this.setState({ verified: false, isLoading: false, role: "" })
             }
         }
 

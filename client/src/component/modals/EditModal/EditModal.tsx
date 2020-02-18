@@ -11,7 +11,7 @@ import { editVacation } from "../../../redux/actions"
 import { state, props } from "./interface"
 
 class EditModal extends React.Component<props, state> {
-    constructor(props: any) {
+    constructor(props: props) {
         super(props)
         this.state = {
             open: false,
@@ -36,7 +36,7 @@ class EditModal extends React.Component<props, state> {
 
     };
 
-    handleChange = (e: any) => {
+    handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
         const { vacation } = this.state
         this.setState({ vacation: { ...vacation, [name]: value } })
@@ -156,10 +156,10 @@ class EditModal extends React.Component<props, state> {
 
 
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Function) => {
     return {
         actions: {
-            editVacation: (vacationObj: any) => { dispatch(editVacation(vacationObj)) }
+            editVacation: (vacationObj: object) => { dispatch(editVacation(vacationObj)) }
         }
     }
 

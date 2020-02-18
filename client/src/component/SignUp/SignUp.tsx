@@ -14,8 +14,8 @@ import { state, props } from "./interface"
 import '../SignIn/style.css'
 
 
-class SignIn extends React.Component<any, state>{
-    constructor(props: any) {
+class SignIn extends React.Component<props, state>{
+    constructor(props: props) {
         super(props)
         this.state = {
             email: "",

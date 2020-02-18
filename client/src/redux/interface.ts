@@ -4,5 +4,8 @@ export interface initialState {
     register: { registerRedirect: boolean, message: string },
     login: { message: string, role: string },
     vacations: Array<CardTypes>,
-    followers: Array<any>
+    followers: Array<CardTypes>
+}
+export interface actionType {
+    type: string, payload: any
 }

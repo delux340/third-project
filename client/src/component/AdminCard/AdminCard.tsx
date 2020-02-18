@@ -7,8 +7,7 @@ import Editmodal from "../modals/EditModal/EditModal"
 class AdminCard extends React.Component<props, state> {
 
     render() {
-        const { vacation} = this.props
-        console.log(this)
+        const { vacation } = this.props
         const { id, image, description, destination, from, until, price, followers_count } = vacation
         return (
             <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12" >

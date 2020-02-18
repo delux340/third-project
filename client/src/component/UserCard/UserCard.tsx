@@ -5,7 +5,6 @@ import { props, state } from "./interface"
 import { followVacation } from "../../redux/actions"
 import { Checkbox } from "@material-ui/core";
 
-//change any
 class UserCard extends React.Component<props, state> {
 
     handeFollow = (e: React.ChangeEvent<HTMLInputElement>) => {

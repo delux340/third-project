@@ -6,3 +6,6 @@ export interface state {
 export interface props {
     adminRequierd: boolean
 }
+export interface wrapperProps {
+    role: string
+}

@@ -23,7 +23,7 @@ class AddVacation extends React.Component<props, state>{
             price: ""
         }
     }
-    
+
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
         this.setState({ [name]: value } as any)

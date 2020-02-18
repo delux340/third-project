@@ -6,12 +6,12 @@ export interface CardTypes {
     price: string
     followers: number
     image: string
-    id?: any
-    followers_count?: number
+    id: number
+    followers_count: number
 }
 export interface props {
     vacation: CardTypes
-    key?: number
+
 }
 
 export interface state {

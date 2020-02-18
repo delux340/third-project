@@ -1,5 +1,5 @@
 import Actions from "./actions.config"
-
+import { actionType } from "./interface"
 const initialState = {
     register: { registerRedirect: false, message: "" },
     login: { message: "", role: "" },
@@ -7,7 +7,7 @@ const initialState = {
     followers: []
 }
 
-export default function root(state = initialState, action: any) {
+export default function root(state = initialState, action: actionType) {
     switch (action.type) {
 
         case Actions.REGISTER: {

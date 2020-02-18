@@ -68,7 +68,7 @@ class DeleteModal extends React.Component<props, state> {
 const mapDispatchToProps = (dispatch: Function) => {
     return {
         actions: {
-            removeVacation: (vacationId: any) => { dispatch(removeVacation(vacationId)) }
+            removeVacation: (vacationId: number) => { dispatch(removeVacation(vacationId)) }
         }
     }
 
