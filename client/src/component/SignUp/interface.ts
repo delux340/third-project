@@ -8,5 +8,6 @@ export interface state {
 export interface props {
     actions: { register: Function },
     registerRedirect: boolean
-    history:Array<string>
+    history: Array<string>
+    message: string
 }

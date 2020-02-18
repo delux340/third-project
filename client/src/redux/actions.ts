@@ -23,7 +23,6 @@ export const loginUserSuccess = (user: object) => {
 }
 
 export const loginUser = (user: object) => {
-    console.log(user)
     return async (dispatch: Function) => {
         const data = await loginService(user)
         dispatch(loginUserSuccess(data))

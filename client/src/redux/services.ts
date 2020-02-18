@@ -8,19 +8,18 @@ export const registerService = async (user: object) => {
         const { data } = await axios.post(`${baseURL}/users/register`, user);
         return data;
     } catch (err) {
-        return console.log(err)
+        return { message: "user already exists" }
     }
 }
 
 export const loginService = async (user: object) => {
     try {
         const { data } = await axios.post(`${baseURL}/users/login`, user);
-        console.log(data)
         const { jwtWithoutPassword } = data
         localStorage.setItem("token", jwtWithoutPassword)
         return data;
     } catch (err) {
-        return console.log(err)
+        return { message: "email or password are incorrect" }
     }
 }
 
@@ -40,9 +39,8 @@ export const verifyTokenService = async () => {
         return data
     }
     catch (err) {
-        console.log("client catch")
         localStorage.setItem("token", "")
-        return ({ message: err.message, role: "" })
+        return ({ role: "" })
     }
 }
 export const addVacationService = async (vacationObj: object) => {

@@ -12,6 +12,7 @@ import Container from '@material-ui/core/Container';
 import { state, props } from "./interface"
 import './style.css';
 import "../appRouter/auth.css"
+import { initialState } from "../../redux/interface";
 
 class SignIn extends React.Component<props, state>{
     constructor(props: props) {
@@ -41,6 +42,7 @@ class SignIn extends React.Component<props, state>{
     }
 
     render() {
+        const { message } = this.props
         this.handleRedirect()
         this.props.actions.redirectReset()
         return (
@@ -67,6 +69,7 @@ class SignIn extends React.Component<props, state>{
                                         fullWidth
                                         id="email"
                                         label="Email Address"
+                                        placeholder="Email Address"
                                         name="email"
                                         autoComplete="email"
                                         onChange={this.handleChange}
@@ -79,6 +82,7 @@ class SignIn extends React.Component<props, state>{
                                         fullWidth
                                         name="password"
                                         label="Password"
+                                        placeholder="Password"
                                         type="password"
                                         id="password"
                                         autoComplete="current-password"
@@ -89,6 +93,7 @@ class SignIn extends React.Component<props, state>{
 
                                 </Grid>
                             </Grid>
+                            <span style={{ color: "red" }}> {message}</span>
                             <Button
                                 type="button"
                                 fullWidth
@@ -117,6 +122,14 @@ class SignIn extends React.Component<props, state>{
 }
 
 
+const mapStateToProps = (state: initialState) => {
+    const { message } = state.login
+    return {
+        message
+    }
+}
+
+
 const mapDispatchToProps = (dispatch: Function) => {
     return {
         actions: {
@@ -128,7 +141,7 @@ const mapDispatchToProps = (dispatch: Function) => {
 
 }
 
-export default connect(null, mapDispatchToProps)(SignIn)
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
 
 
 

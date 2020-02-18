@@ -44,6 +44,7 @@ class SignIn extends React.Component<props, state>{
 
     }
     render() {
+        const { message } = this.props
         this.handleRedirect()
         return (
             <div className="signStyle">
@@ -65,6 +66,7 @@ class SignIn extends React.Component<props, state>{
                                         fullWidth
                                         id="firstName"
                                         label="First Name"
+                                        placeholder="First Name"
                                         autoFocus
                                         onChange={this.handleChange}
 
@@ -77,6 +79,7 @@ class SignIn extends React.Component<props, state>{
                                         fullWidth
                                         id="lastName"
                                         label="Last Name"
+                                        placeholder="Last Name"
                                         name="lastName"
                                         autoComplete="lname"
                                         onChange={this.handleChange}
@@ -90,6 +93,7 @@ class SignIn extends React.Component<props, state>{
                                         fullWidth
                                         id="email"
                                         label="Email Address"
+                                        placeholder="Email Address"
                                         name="email"
                                         autoComplete="email"
                                         onChange={this.handleChange}
@@ -102,6 +106,7 @@ class SignIn extends React.Component<props, state>{
                                         fullWidth
                                         name="password"
                                         label="Password"
+                                        placeholder="Password"
                                         type="password"
                                         id="password"
                                         autoComplete="current-password"
@@ -109,9 +114,9 @@ class SignIn extends React.Component<props, state>{
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-
                                 </Grid>
                             </Grid>
+                            <span style={{ color: "red" }}> {message}</span>
                             <Button
                                 type="button"
                                 fullWidth
@@ -141,9 +146,9 @@ class SignIn extends React.Component<props, state>{
 
 const mapStateToProps = (state: initialState) => {
 
-    const { registerRedirect } = state.register
+    const { registerRedirect, message } = state.register
     return {
-        registerRedirect
+        registerRedirect, message
     }
 }
 

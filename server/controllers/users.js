@@ -7,7 +7,7 @@ async function login(req, res) {
         const { jwtWithoutPassword, role } = await handleLogin(email, password);
         res.status(200).json({ message: "logged in successfully", jwtWithoutPassword, role });
     } catch (err) {
-        res.status(404).json({ message: err.message, jwtWithoutPassword: "", role: "" })
+        res.status(404).json({ message: "email or password are incorrect", jwtWithoutPassword: "", role: "" })
     }
 
 }
@@ -18,7 +18,7 @@ async function register(req, res) {
         await handleRegister(email, password, firstName, lastName)
         res.status(200).json({ message: "registerd successfuly", registerRedirect: true });
     } catch (err) {
-        res.status(404).json({ message: err.message, registerRedirect: false })
+        res.status(404).json({ message: "user already exists", registerRedirect: false })
     }
 }
 
