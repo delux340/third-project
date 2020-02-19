@@ -27,7 +27,7 @@ CREATE TABLE `vacations_followers` (
   `user_id` varchar(45) DEFAULT NULL,
   `vacation_id` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=224 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `vacations_followers` (
 
 LOCK TABLES `vacations_followers` WRITE;
 /*!40000 ALTER TABLE `vacations_followers` DISABLE KEYS */;
-INSERT INTO `vacations_followers` VALUES (120,'3','38'),(129,'3','2'),(131,'3','42'),(132,'4','41'),(133,'4','2'),(134,'27','1'),(135,'27','2'),(136,'27','41'),(137,'27','42'),(138,'27','45');
+INSERT INTO `vacations_followers` VALUES (120,'3','38'),(129,'3','2'),(131,'3','42'),(132,'4','41'),(133,'4','2'),(134,'27','1'),(135,'27','2'),(136,'27','41'),(137,'27','42'),(138,'27','45'),(159,'12','42'),(160,'12','41'),(161,'12','2'),(162,'12','1'),(163,'12','45'),(165,'11','45'),(166,'11','100'),(169,'11','1'),(170,'11','102'),(191,'16','0'),(196,'16','0'),(197,'16','0'),(198,'16','0'),(202,'16','0'),(206,'16','0'),(207,'16','0'),(208,'16','0'),(209,'16','0');
 /*!40000 ALTER TABLE `vacations_followers` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-07 16:02:45
+-- Dump completed on 2020-02-18 19:35:24

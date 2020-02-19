@@ -94,6 +94,7 @@ class SignIn extends React.Component<props, state>{
                                 </Grid>
                             </Grid>
                             <span style={{ color: "red" }}> {message}</span>
+                            <br></br>
                             <Button
                                 type="button"
                                 fullWidth

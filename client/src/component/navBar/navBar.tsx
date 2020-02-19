@@ -9,9 +9,6 @@ import { state, props } from "./interface"
 
 
 class Navbar extends React.Component<props, state>{
-    constructor(props: props) {
-        super(props)
-    }
 
     handleRoutes = () => {
         const token = localStorage.getItem("token")

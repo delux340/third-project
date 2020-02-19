@@ -4,11 +4,11 @@ export interface CardTypes {
     from: string
     until: string
     price: string
-    followers: number
+    followers?: number
     image: string
-    id: number
-    is_following: number
-    followers_count: number
+    id?: number
+    is_following?: number
+    followers_count?: number
 }
 export interface props {
     actions: { follow: Function }
@@ -19,4 +19,5 @@ export interface props {
 export interface state {
 
 }
+
 

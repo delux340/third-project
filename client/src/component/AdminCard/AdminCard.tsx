@@ -12,7 +12,7 @@ class AdminCard extends React.Component<props, state> {
         return (
             <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12" >
                 <div className="card cardStyle">
-                    <img src={image} className="card-img-top imageStyle"></img>
+                    <img src={image} className="card-img-top imageStyle" alt=""></img>
                     <div className="card-body">
                         <p className="card-title"><b>Description:</b> {description}</p>
                         <p className="card-text"><b>Destination:</b> {destination}</p>

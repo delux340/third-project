@@ -15,11 +15,12 @@ class UserCard extends React.Component<props, state> {
 
     render() {
         const { vacation } = this.props
+        console.log(vacation.is_following)
         const followed = vacation.is_following ? true : false
         return (
             <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12" >
                 <div className="card cardStyle">
-                    <img src={vacation.image} className="card-img-top imageStyle"></img>
+                    <img src={vacation.image} className="card-img-top imageStyle" alt=""></img>
                     <div className="card-body">
                         <p className="card-title"><b>Description:</b> {vacation.description}</p>
                         <p className="card-text"><b>Destination:</b> {vacation.destination}</p>

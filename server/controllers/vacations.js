@@ -29,4 +29,4 @@ async function followers(req, res) {
 }
 
 
-module.exports = { vacations, add, edit, remove,followers }
+module.exports = { vacations, add, edit, remove, followers }

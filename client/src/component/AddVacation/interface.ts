@@ -9,4 +9,5 @@ export interface state {
     from: string,
     until: string,
     price: string
+    message: string
 }

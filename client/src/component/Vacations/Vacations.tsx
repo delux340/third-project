@@ -10,9 +10,6 @@ import { state, props } from "./interface"
 
 
 class Vacations extends React.Component<props, state>{
-    constructor(props: props) {
-        super(props)
-    }
 
     componentDidMount() {
         const { vacations } = this.props.actions

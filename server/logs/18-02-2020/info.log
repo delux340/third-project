@@ -10,3 +10,4 @@
 {"message":"user test@gmail.com has failed to register 05:14:58","level":"error"}
 {"message":"user undefined has failed to login 05:15:07","level":"error"}
 {"message":"user afikbahar@gmail.com logged in successfuly in 05:15:14","level":"info"}
+{"message":"user test@gmail.com logged in successfuly in 05:42:28","level":"info"}

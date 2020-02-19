@@ -1,6 +1,6 @@
 import axios from "axios";
 import mainAxios from "../component/axios/axios"
-const baseURL = "http://localhost:4000"
+const baseURL = "https://react-third-project.herokuapp.com"
 
 
 export const registerService = async (user: object) => {
@@ -26,7 +26,6 @@ export const loginService = async (user: object) => {
 export const getVacationsService = async () => {
     try {
         const { data } = await mainAxios.get(`vacations`);
-
         return data;
     } catch (err) {
         return console.log(err)

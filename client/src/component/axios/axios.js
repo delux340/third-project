@@ -1,5 +1,5 @@
 const axios = require("axios")
-const url = "http://www.localhost:4000"
+const url = "https://react-third-project.herokuapp.com"
 
 const mainAxios = axios.create({
     baseURL: `${url}/`

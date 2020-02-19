@@ -31,7 +31,6 @@ class Charts extends React.Component<props, state>{
     const { followers } = this.props
     const data = {
       labels: followers.map((itr: CardTypes) => itr.destination),
-
       datasets: [{
         data: followers.map((itr: CardTypes) => itr.followers_count),
         backgroundColor: this.colorsArray,

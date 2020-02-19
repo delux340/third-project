@@ -20,7 +20,8 @@ class AddVacation extends React.Component<props, state>{
             image: "",
             from: "",
             until: "",
-            price: ""
+            price: "",
+            message: ""
         }
     }
 
@@ -29,9 +30,6 @@ class AddVacation extends React.Component<props, state>{
         this.setState({ [name]: value } as any)
     }
 
-    handleClick = () => {
-        this.props.actions.addVacation(this.state)
-    }
     cleanState = () => {
         this.setState({
             description: "",
@@ -39,7 +37,8 @@ class AddVacation extends React.Component<props, state>{
             image: "",
             from: "",
             until: "",
-            price: ""
+            price: "",
+            message: ""
         })
     }
 
@@ -49,7 +48,7 @@ class AddVacation extends React.Component<props, state>{
     }
 
     render() {
-        const { description, destination, image, from, until, price } = this.state
+        const { description, destination, image, from, until, price, message } = this.state
         if (!from || !until) this.handleDate()
         return (
             <div style={{ margin: "25px" }}>
@@ -111,6 +110,7 @@ class AddVacation extends React.Component<props, state>{
                                 onChange={this.handleChange}
                                 value={price}
                             />
+                            <span style={{ color: "red" }}>{message}</span>
                             <br></br>
                             <AddVacationModal vacation={this.state} cleanState={this.cleanState} />
                         </div>

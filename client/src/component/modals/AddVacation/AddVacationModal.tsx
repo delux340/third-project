@@ -25,6 +25,9 @@ class AddVacationModal extends React.Component<props, state> {
     };
 
     handleVacation = () => {
+        const { description, destination, image, from, until, price } = this.props.vacation
+        if (!description || !destination || !image || !from || !until || !price) return
+
         const { addVacation } = this.props.actions
         const { vacation } = this.props
         addVacation(vacation)
@@ -59,9 +62,9 @@ class AddVacationModal extends React.Component<props, state> {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleAddVacation} color="primary">
-                            add
+                            add Another 
                       </Button>
-                        <Link to="/vacations">
+                        <Link to="/">
                             <Button onClick={this.handleClose} color="primary" autoFocus>
                                 back to vacation
                          </Button>

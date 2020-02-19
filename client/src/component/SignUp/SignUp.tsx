@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { initialState } from "../../redux/interface"
 import { state, props } from "./interface"
 import '../SignIn/style.css'
