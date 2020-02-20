@@ -18,7 +18,6 @@ class DeleteModal extends React.Component<props, state> {
         }
     }
 
-
     handleClickOpen = () => {
         this.setState({ open: true });
     };
@@ -73,12 +72,6 @@ const mapDispatchToProps = (dispatch: Function) => {
     }
 
 }
-
-
-
-
-
-
 
 
 export default connect(null, mapDispatchToProps)(DeleteModal)

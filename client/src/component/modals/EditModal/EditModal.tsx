@@ -45,9 +45,7 @@ class EditModal extends React.Component<props, state> {
     handleClick = () => {
         const { vacation } = this.state
         const { description, destination, image, from, until, price, } = vacation
-        if (!description || !destination || !image || !from || !until || !price) {
-            return
-        }
+        if (!description || !destination || !image || !from || !until || !price) return
         this.props.actions.editVacation(vacation)
         this.setState({ open: false });
 

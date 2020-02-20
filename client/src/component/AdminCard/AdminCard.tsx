@@ -1,11 +1,10 @@
 import React from "react"
-import '../Vacations/style.css';
 import { props, state } from "./interface"
 import DeleteModal from "../modals/DeleteModal/DeleteModal"
 import Editmodal from "../modals/EditModal/EditModal"
+import '../Vacations/style.css';
 
 class AdminCard extends React.Component<props, state> {
-
     render() {
         const { vacation } = this.props
         const { id, image, description, destination, from, until, price, followers_count } = vacation

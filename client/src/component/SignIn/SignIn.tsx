@@ -11,7 +11,6 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { state, props } from "./interface"
 import './style.css';
-import "../appRouter/auth.css"
 import { initialState } from "../../redux/interface";
 
 class SignIn extends React.Component<props, state>{
@@ -28,19 +27,14 @@ class SignIn extends React.Component<props, state>{
     }
 
     handleClick = () => {
-        const { email, password } = this.state
+        const { email, password, } = this.state
         if (!email || !password) return
         this.props.actions.login(this.state)
     }
 
     handleRedirect = () => {
         const token = localStorage.getItem("token")
-        try {
-            if (token)
-                this.props.history.push("/")
-        } catch (ex) {
-            console.log("ex")
-        }
+        if (token) this.props.history.push("/")
     }
 
     render() {
@@ -77,7 +71,7 @@ class SignIn extends React.Component<props, state>{
                                         onChange={this.handleChange}
                                         type="email"
 
-                                  />
+                                    />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
@@ -100,7 +94,7 @@ class SignIn extends React.Component<props, state>{
                             <span style={{ color: "red" }}> {message}</span>
                             <br></br>
                             <Button
-                                type="submit"
+                                type="button"
                                 fullWidth
                                 variant="contained"
                                 color="primary"

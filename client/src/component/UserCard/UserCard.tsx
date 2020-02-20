@@ -1,9 +1,11 @@
-import React, { ChangeEvent } from "react"
-import '../Vacations/style.css';
+import React from "react"
 import { connect } from "react-redux"
 import { props, state } from "./interface"
 import { followVacation } from "../../redux/actions"
-import { Checkbox } from "@material-ui/core";
+import { Checkbox, FormControlLabel } from "@material-ui/core";
+import Favorite from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import '../Vacations/style.css';
 
 class UserCard extends React.Component<props, state> {
 
@@ -28,7 +30,8 @@ class UserCard extends React.Component<props, state> {
                         <p className="card-text"><b>Until:</b>{vacation.until}</p>
                         <p className="card-text"><b>Price:</b> {vacation.price}</p>
                         <p className="card-text"><b>Followers:</b> {vacation.followers_count}</p>
-                        <Checkbox checked={followed} onChange={this.handeFollow} className="btn btn-primary">Follow</Checkbox>
+                        <FormControlLabel control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />}
+                            checked={followed} onChange={this.handeFollow} />} label="" />
                     </div>
                 </div>
             </div>

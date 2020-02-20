@@ -12,7 +12,6 @@ class Navbar extends React.Component<props, state>{
 
     handleRoutes = () => {
         const token = localStorage.getItem("token")
-        console.log("navbar")
         if (token) {
             return <Link style={{ color: "black" }} to="/signin"> <button onClick={() => this.props.actions.logout()}
                 className="btn" style={{ backgroundColor: "#3f51b5" }} >
@@ -22,12 +21,9 @@ class Navbar extends React.Component<props, state>{
         }
     }
 
-
-
     render() {
         const { role, first_name } = this.props
         let Authroutes = this.handleRoutes()
-
         return (
             <div style={{ backgroundColor: "#3f51b5" }}>
                 <nav className="navbar navbar-expand-lg navbar-primary">

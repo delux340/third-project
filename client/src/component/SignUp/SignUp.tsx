@@ -1,5 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
+import { initialState } from "../../redux/interface"
 import { registerUser } from "../../redux/actions"
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,7 +10,6 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Link } from "react-router-dom";
-import { initialState } from "../../redux/interface"
 import { state, props } from "./interface"
 import '../SignIn/style.css'
 
@@ -30,20 +30,17 @@ class SignIn extends React.Component<props, state>{
         this.setState({ [name]: value } as any)
     }
 
-
     handleClick = () => {
         const { email, password } = this.state
         if (!email || !password) return
         this.props.actions.register(this.state)
-
     }
+
     handleRedirect = () => {
         const { registerRedirect } = this.props
         const token = localStorage.getItem("token")
         if (registerRedirect) this.props.history.push("/signin")
         if (token) this.props.history.push("/")
-
-
     }
     render() {
         const { message } = this.props
@@ -100,7 +97,7 @@ class SignIn extends React.Component<props, state>{
                                         autoComplete="email"
                                         onChange={this.handleChange}
                                         type="email"
-                                   />
+                                    />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
@@ -121,7 +118,7 @@ class SignIn extends React.Component<props, state>{
                             </Grid>
                             <span style={{ color: "red" }}> {message}</span>
                             <Button
-                                type="submit"
+                                type="button"
                                 fullWidth
                                 variant="contained"
                                 color="primary"
