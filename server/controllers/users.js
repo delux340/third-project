@@ -7,7 +7,7 @@ async function login(req, res) {
         const { jwtWithoutPassword, role, first_name } = await handleLogin(email, password);
         res.status(200).json({ message: "logged in successfully", jwtWithoutPassword, role, first_name });
     } catch (err) {
-        res.status(404).json({ message: "email or password are incorrect", jwtWithoutPassword: "", role: "" })
+        res.status(404).json({ message: "email or password are incorrect", jwtWithoutPassword: "", role: "", firstName: "g" })
     }
 
 }

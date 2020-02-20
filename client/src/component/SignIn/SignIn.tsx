@@ -75,7 +75,9 @@ class SignIn extends React.Component<props, state>{
                                         name="email"
                                         autoComplete="email"
                                         onChange={this.handleChange}
-                                    />
+                                        type="email"
+
+                                  />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
