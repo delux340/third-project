@@ -38,8 +38,9 @@ export const verifyTokenService = async () => {
         return data
     }
     catch (err) {
+      console.log("verify catch")
         localStorage.setItem("token", "")
-        return ({ role: "" })
+        return ({ role: "", first_name: "" })
     }
 }
 export const addVacationService = async (vacationObj: object) => {

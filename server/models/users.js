@@ -65,9 +65,9 @@ async function registerSucssess(password, salt, email, first_name, last_name) {
 }
 
 async function loginSuccess(userData, email) {
-    const { id, role } = userData
+    const { id, role, first_name } = userData
     const jwtWithoutPassword = await getToken(id, role, email);
-    return { jwtWithoutPassword, role }
+    return { jwtWithoutPassword, role, first_name }
 }
 
 module.exports = {

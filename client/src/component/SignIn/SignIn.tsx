@@ -28,6 +28,8 @@ class SignIn extends React.Component<props, state>{
     }
 
     handleClick = () => {
+        const { email, password } = this.state
+        if (!email || !password) return
         this.props.actions.login(this.state)
     }
 
@@ -96,7 +98,7 @@ class SignIn extends React.Component<props, state>{
                             <span style={{ color: "red" }}> {message}</span>
                             <br></br>
                             <Button
-                                type="button"
+                                type="submit"
                                 fullWidth
                                 variant="contained"
                                 color="primary"
@@ -124,7 +126,7 @@ class SignIn extends React.Component<props, state>{
 
 
 const mapStateToProps = (state: initialState) => {
-    const { message } = state.login
+    let { message } = state.login
     return {
         message
     }

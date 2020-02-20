@@ -2,7 +2,7 @@ import Actions from "./actions.config"
 import { actionType } from "./interface"
 const initialState = {
     register: { registerRedirect: false, message: "" },
-    login: { message: "", role: "" },
+    login: { message: "", role: "", first_name: "" },
     vacations: [],
     followers: []
 }
@@ -11,7 +11,6 @@ export default function root(state = initialState, action: actionType) {
     switch (action.type) {
 
         case Actions.REGISTER: {
-
             return {
                 ...state,
                 register: action.payload
@@ -49,7 +48,7 @@ export default function root(state = initialState, action: actionType) {
 
             return {
                 ...state,
-                login: { message: "", role: "" },
+                login: { message: "", role: "", first_name: "" },
             }
         }
 

@@ -12,22 +12,22 @@ class Navbar extends React.Component<props, state>{
 
     handleRoutes = () => {
         const token = localStorage.getItem("token")
-
+        console.log("navbar")
         if (token) {
             return <Link style={{ color: "black" }} to="/signin"> <button onClick={() => this.props.actions.logout()}
                 className="btn" style={{ backgroundColor: "#3f51b5" }} >
                 Sign out</button></Link>
         } else {
             return <Link style={{ color: "black" }} to="/signin"><button className="btn" style={{ backgroundColor: "#3f51b5" }}> Sign in</button></Link>
-
         }
     }
 
 
 
     render() {
-        const { role } = this.props
+        const { role, first_name } = this.props
         let Authroutes = this.handleRoutes()
+
         return (
             <div style={{ backgroundColor: "#3f51b5" }}>
                 <nav className="navbar navbar-expand-lg navbar-primary">
@@ -39,6 +39,7 @@ class Navbar extends React.Component<props, state>{
                         <ul className="navbar-nav mr-auto">
                             <AppLinks routes={routes} role={role} />
                         </ul>
+                        <span style={{ textTransform: "capitalize" }}>{first_name}</span>
                         {Authroutes}
                     </div>
                 </nav>
@@ -48,10 +49,10 @@ class Navbar extends React.Component<props, state>{
 }
 
 const mapStateToProps = (state: initialState) => {
-
-    const { role, message } = state.login
+    let { role, first_name } = state.login
+    first_name = first_name ? `hello ${first_name}` : ""
     return {
-        role, message
+        role, first_name
     }
 }
 

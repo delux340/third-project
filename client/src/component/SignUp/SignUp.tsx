@@ -32,6 +32,8 @@ class SignIn extends React.Component<props, state>{
 
 
     handleClick = () => {
+        const { email, password } = this.state
+        if (!email || !password) return
         this.props.actions.register(this.state)
 
     }
@@ -118,7 +120,7 @@ class SignIn extends React.Component<props, state>{
                             </Grid>
                             <span style={{ color: "red" }}> {message}</span>
                             <Button
-                                type="button"
+                                type="submit"
                                 fullWidth
                                 variant="contained"
                                 color="primary"
