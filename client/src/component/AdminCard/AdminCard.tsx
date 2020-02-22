@@ -3,6 +3,7 @@ import { props, state } from "./interface"
 import DeleteModal from "../modals/DeleteModal/DeleteModal"
 import Editmodal from "../modals/EditModal/EditModal"
 import '../Vacations/style.css';
+import "../UserCard/style.css"
 
 class AdminCard extends React.Component<props, state> {
     render() {
@@ -14,7 +15,7 @@ class AdminCard extends React.Component<props, state> {
                     <img src={image} className="card-img-top imageStyle" alt=""></img>
                     <div className="card-body">
                         <p className="card-title"><b>Description:</b> {description}</p>
-                        <p className="card-text"><b>Destination:</b> {destination}</p>
+                        <p className="card-text capital"><b>Destination:</b> {destination}</p>
                         <p className="card-text"><b>From:</b> {from}</p>
                         <p className="card-text"><b>Until:</b>{until}</p>
                         <p className="card-text"><b>Price:</b> {price}</p>
@@ -22,20 +23,12 @@ class AdminCard extends React.Component<props, state> {
                         <Editmodal vacation={vacation} />
                         <DeleteModal id={id} />
                     </div>
-                </div></div>
+                </div>
+            </div>
         )
     }
 
 }
-
-
-
-
-
-
-
-
-
 
 
 export default AdminCard

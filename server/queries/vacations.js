@@ -1,6 +1,6 @@
 
 const getAllVacations = () => {
-        return `SELECT vacations.*,(SELECT COUNT(vacation_id) FROM vacations_followers WHERE vacations_followers.vacation_id = vacations.id) AS followers_count,
+    return `SELECT vacations.*,(SELECT COUNT(vacation_id) FROM vacations_followers WHERE vacations_followers.vacation_id = vacations.id) AS followers_count,
         CASE WHEN EXISTS( SELECT 1 FROM vacations_followers WHERE vacations_followers.vacation_id = vacations.id AND vacations_followers.user_id = ?) THEN 1
         ELSE 0 END AS is_following FROM vacations`
 }

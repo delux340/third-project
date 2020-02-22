@@ -19,6 +19,5 @@ export const AppLinks = (props) => {
         to={route.path}>
         <Button key={Route.title} color="inherit">{route.title}
         </Button>
-    </Link>
-    )
+    </Link>)
 }

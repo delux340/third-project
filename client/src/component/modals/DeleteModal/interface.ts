@@ -1,4 +1,6 @@
-export interface state { open: boolean }
+export interface state {
+    open: boolean
+}
 export interface props {
 
     actions:

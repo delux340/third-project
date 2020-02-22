@@ -35,7 +35,6 @@ class DeleteModal extends React.Component<props, state> {
         const { open } = this.state
         return (
             <div>
-
                 <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
                     delete
                     </Button>

@@ -1,11 +1,7 @@
 import React from "react"
 import Header from "../Header/Header"
 import TextField from '@material-ui/core/TextField';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
 import moment from "moment";
-import { connect } from "react-redux";
-import { addVacation } from "../../redux/actions"
 import AddVacationModal from "../modals/AddVacation/AddVacationModal"
 import { props, state } from "./interface"
 import '../SignIn/style.css'
@@ -51,12 +47,12 @@ class AddVacation extends React.Component<props, state>{
         const { description, destination, image, from, until, price, message } = this.state
         if (!from || !until) this.handleDate()
         return (
-            <div style={{ margin: "25px" }}>
+            <div style={{ margin: "50px" }}>
                 <div className="signStyle" style={{ height: "300px" }}>
-                    <Header header="Add Vactaion" />
+                    <Header header="Add Vacation" />
                     <form noValidate autoComplete="off">
                         <div>
-                            <TextField
+                                <TextField
                                 id="standard-multiline-flexible"
                                 label="description"
                                 multiline
@@ -81,8 +77,7 @@ class AddVacation extends React.Component<props, state>{
                                 onChange={this.handleChange}
                                 value={image}
                             />
-                            <br></br>
-                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <br></br><br></br><br></br>
                                 <TextField
                                     id="standard-multiline-flexible"
                                     rowsMax="4"
@@ -101,7 +96,6 @@ class AddVacation extends React.Component<props, state>{
                                     label="until"
 
                                 />
-                            </MuiPickersUtilsProvider>
                             <TextField
                                 id="standard-textarea"
                                 label="price"
@@ -111,7 +105,7 @@ class AddVacation extends React.Component<props, state>{
                                 value={price}
                             />
                             <span style={{ color: "red" }}>{message}</span>
-                            <br></br>
+                            <br></br><br></br>
                             <AddVacationModal vacation={this.state} cleanState={this.cleanState} />
                         </div>
                     </form>
@@ -123,17 +117,8 @@ class AddVacation extends React.Component<props, state>{
 }
 
 
-const mapDispatchToProps = (dispatch: Function) => {
-    return {
-        actions: {
-            addVacation: (vacationObj: object) => { dispatch(addVacation(vacationObj)) }
-        }
-    }
-}
 
-
-
-export default connect(null, mapDispatchToProps)(AddVacation)
+export default AddVacation
 
 
 

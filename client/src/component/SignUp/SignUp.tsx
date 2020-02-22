@@ -12,7 +12,7 @@ import Container from '@material-ui/core/Container';
 import { Link } from "react-router-dom";
 import { state, props } from "./interface"
 import '../SignIn/style.css'
-
+import Header from "../Header/Header"
 
 class SignIn extends React.Component<props, state>{
     constructor(props: props) {
@@ -42,6 +42,7 @@ class SignIn extends React.Component<props, state>{
         if (registerRedirect) this.props.history.push("/signin")
         if (token) this.props.history.push("/")
     }
+
     render() {
         const { message } = this.props
         this.handleRedirect()
@@ -68,7 +69,6 @@ class SignIn extends React.Component<props, state>{
                                         placeholder="First Name"
                                         autoFocus
                                         onChange={this.handleChange}
-
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -116,7 +116,7 @@ class SignIn extends React.Component<props, state>{
                                 <Grid item xs={12}>
                                 </Grid>
                             </Grid>
-                            <span style={{ color: "red" }}> {message}</span>
+                            <span className="error" > {message}</span>
                             <Button
                                 type="button"
                                 fullWidth

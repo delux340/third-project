@@ -3,7 +3,10 @@ export interface state {
     password: string
 }
 export interface props {
-    actions: { login: Function, redirectReset: Function },
+    actions: {
+        login: Function,
+        redirectReset: Function
+    },
     history: Array<string>
     message: string
 }

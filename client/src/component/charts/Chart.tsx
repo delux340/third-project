@@ -5,6 +5,7 @@ import { Pie } from 'react-chartjs-2';
 import { props, state } from "./interface"
 import { initialState } from "../../redux/interface"
 import { CardTypes } from "../UserCard/interface"
+import Header from "../Header/Header"
 
 class Charts extends React.Component<props, state>{
 
@@ -12,6 +13,7 @@ class Charts extends React.Component<props, state>{
     const { getVacationsFollows } = this.props.actions
     getVacationsFollows()
   }
+
   colorsArray = [
     '#FF6384', '#36A2EB', '#FFCE56', '#FF6633',
     '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
@@ -41,7 +43,7 @@ class Charts extends React.Component<props, state>{
 
     return (
       <div>
-        <h2>vacations followers</h2>
+        <Header header="Vacations followers" />
         <br></br>
         <Pie data={data} height={200} width={500} />
       </div>

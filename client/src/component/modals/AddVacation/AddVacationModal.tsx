@@ -16,7 +16,6 @@ class AddVacationModal extends React.Component<props, state> {
         this.state = {
             open: false
         }
-
     }
 
     handleClose = () => {
@@ -32,7 +31,6 @@ class AddVacationModal extends React.Component<props, state> {
         const { vacation } = this.props
         addVacation(vacation)
         this.setState({ open: true });
-
     }
 
     handleAddVacation = () => {
@@ -62,7 +60,7 @@ class AddVacationModal extends React.Component<props, state> {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleAddVacation} color="primary">
-                            add Another 
+                            add Another
                       </Button>
                         <Link to="/">
                             <Button onClick={this.handleClose} color="primary" autoFocus>
@@ -82,7 +80,6 @@ const mapDispatchToProps = (dispatch: Function) => {
     return {
         actions: {
             addVacation: (vacationObj: object) => { dispatch(addVacation(vacationObj)) }
-
         }
     }
 }

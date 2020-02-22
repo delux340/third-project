@@ -1,9 +1,9 @@
 import React from "react"
 import SignUp from "../SignUp/SignUp"
 import Vacations from "../Vacations/Vacations"
-import { verficationWrapper } from './auth'
 import AddVacation from "../AddVacation/AddVacation"
 import Charts from "../charts/Chart"
+import { verficationWrapper } from './auth'
 
 export const routes = [
 

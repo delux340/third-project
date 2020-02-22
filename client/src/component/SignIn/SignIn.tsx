@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { loginUser, resetRedirect } from "../../redux/actions"
+import { initialState } from "../../redux/interface";
 import { Link } from "react-router-dom"
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,7 +12,6 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { state, props } from "./interface"
 import './style.css';
-import { initialState } from "../../redux/interface";
 
 class SignIn extends React.Component<props, state>{
     constructor(props: props) {
@@ -21,6 +21,7 @@ class SignIn extends React.Component<props, state>{
             password: ""
         }
     }
+
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
         this.setState({ [name]: value } as any)
@@ -47,16 +48,14 @@ class SignIn extends React.Component<props, state>{
                     <CssBaseline />
                     <div >
                         <Typography component="h1" variant="h5">
-                            Sign in
+                          Sign in
                          </Typography>
                         <br />
                         <form>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
-
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
@@ -70,7 +69,6 @@ class SignIn extends React.Component<props, state>{
                                         autoComplete="email"
                                         onChange={this.handleChange}
                                         type="email"
-
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -88,10 +86,9 @@ class SignIn extends React.Component<props, state>{
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-
                                 </Grid>
                             </Grid>
-                            <span style={{ color: "red" }}> {message}</span>
+                            <span className="error"> {message}</span>
                             <br></br>
                             <Button
                                 type="button"
@@ -115,9 +112,6 @@ class SignIn extends React.Component<props, state>{
             </div>
         )
     }
-
-
-
 }
 
 
@@ -134,7 +128,6 @@ const mapDispatchToProps = (dispatch: Function) => {
         actions: {
             login: (user: object) => { dispatch(loginUser(user)) },
             redirectReset: () => { dispatch(resetRedirect()) }
-
         }
     }
 

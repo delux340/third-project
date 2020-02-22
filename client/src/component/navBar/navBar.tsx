@@ -6,7 +6,7 @@ import { routes } from "../appRouter/routers.config"
 import { AppLinks } from "../appRouter/appRouter"
 import { initialState } from "../../redux/interface"
 import { state, props } from "./interface"
-
+import "./style.css"
 
 class Navbar extends React.Component<props, state>{
 
@@ -27,15 +27,16 @@ class Navbar extends React.Component<props, state>{
         return (
             <div style={{ backgroundColor: "#3f51b5" }}>
                 <nav className="navbar navbar-expand-lg navbar-primary">
-                    <span className="navbar-brand" >Vacations</span>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <h3 className="navbar-brand title" >Vacations</h3>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
                             <AppLinks routes={routes} role={role} />
                         </ul>
-                        <span style={{ textTransform: "capitalize" }}>{first_name}</span>
+                        <span className="user">{first_name}</span>
                         {Authroutes}
                     </div>
                 </nav>

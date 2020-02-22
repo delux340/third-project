@@ -5,7 +5,6 @@ import { state, props, wrapperProps } from "./interface"
 import "./auth.css"
 
 
-
 export const verficationWrapper = (WrappedComponent: React.ComponentType<wrapperProps>, adminRequierd: boolean) => {
     class VerificationHOCValidator extends React.Component<props, state> {
         constructor(props: props) {
@@ -35,6 +34,7 @@ export const verficationWrapper = (WrappedComponent: React.ComponentType<wrapper
         render() {
             const { isLoading, verified, role } = this.state
             const { adminRequierd } = this.props
+            
             if (isLoading) return <div className="loader spinner-border text-primary" role="status">
                 <span className="sr-only">Loading...</span>
             </div>
@@ -47,7 +47,6 @@ export const verficationWrapper = (WrappedComponent: React.ComponentType<wrapper
                 } else {
                     return <Redirect to="/" />
                 }
-
             }
         }
     }
